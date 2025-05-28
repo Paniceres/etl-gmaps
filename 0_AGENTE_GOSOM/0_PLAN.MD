@@ -1,12 +1,12 @@
 **Visión General del Agente (Estado Ideal - según "Diseño Pipeline ETL"):**
 
-*   Un proyecto independiente (`Paniceres/google-maps-scraper-etl`, un fork de `gosom/google-maps-scraper`).
-*   Dockerizado, con una API RESTful (FastAPI) para gestión programática.
-*   Extrae datos de Google Maps, los transforma (normaliza, deduplica).
-*   Carga los datos directamente en una base de datos PostgreSQL (staging).
-*   Configurable vía variables de entorno.
-*   Con logging detallado y tests.
-*   Integrable en un workflow de orquestación (Argo).
+* Un proyecto independiente (`Paniceres/google-maps-scraper-etl`, un fork de `gosom/google-maps-scraper`).
+* Dockerizado, con una API RESTful (FastAPI) para gestión programática.
+* Extrae datos de Google Maps, los transforma (normaliza, deduplica).
+* Carga los datos directamente en una base de datos PostgreSQL (staging).
+* Configurable vía variables de entorno.
+* Con logging detallado y tests.
+* Integrable en un workflow de orquestación (Argo).
 
 **Estructura de Carpetas Propuesta para `0_AGENTE_GOSOM` (Mantenemos la misma, soporta la evolución):**
 
@@ -139,80 +139,3 @@ Este documento describe el plan de desarrollo incremental para el Agente Google 
 
 ---
 ```
-
-**Archivo `0_AGENTE_GOSOM/README.md` (Contenido Inicial para el MVP):**
-
-```markdown
-# Agente Google Maps ETL (GOSOM) para Proyecto Avalian
-
-Este agente es responsable de extraer datos de Google Maps, transformarlos y prepararlos para su carga en la base de datos de staging del proyecto Avalian. Actualmente, se encuentra en fase de desarrollo MVP utilizando Jupyter Notebooks.
-
-## Propósito
-El objetivo principal de este agente es generar prospectos (empresas, profesionales, etc.) a partir de Google Maps para alimentar los equipos de ventas (humanos y de IA) de Avalian.
-
-## Fase Actual: MVP con Jupyter Notebooks
-La funcionalidad actual se centra en el notebook: `notebooks/2_MVP_Scraping_Transform_CSV.ipynb`.
-
-Este notebook permite:
-1.  Leer configuraciones de búsqueda (keywords, parámetros) desde la carpeta `config/`.
-2.  Ejecutar el scraper `gosom/google-maps-scraper` (vía Docker) de forma programática.
-3.  Almacenar los resultados crudos en `data/raw/`.
-4.  Aplicar transformaciones básicas (limpieza, parseo de campos).
-5.  Guardar los datos procesados en `data/processed/`.
-6.  Realizar un EDA enfocado en Avalian sobre los datos extraídos.
-7.  Registrar logs básicos en `data/logs/`.
-
-## Configuración (para el MVP Notebook)
-
-1.  **Instalar dependencias:**
-    ```bash
-    pip install pandas jupyter matplotlib seaborn
-    ```
-2.  **Asegurar que Docker esté corriendo.**
-3.  **Configurar búsquedas:**
-    *   Añadir/modificar archivos CSV en `config/` con las keywords (ej. `keywords_neuquen.csv`). Una keyword por línea.
-    *   Ajustar parámetros en `config/parameters_default.json` (ej. lenguaje, profundidad de búsqueda).
-4.  **Ejecutar el Notebook:**
-    *   Abrir y ejecutar las celdas de `notebooks/2_MVP_Scraping_Transform_CSV.ipynb`.
-
-## Estructura de Carpetas Relevante
--   `config/`: Archivos de configuración para las búsquedas.
--   `notebooks/`: Jupyter Notebooks para exploración, ejecución del MVP y análisis.
--   `data/raw/`: Salida CSV cruda del scraper GOSOM.
--   `data/processed/`: Salida CSV procesada y transformada.
--   `data/logs/`: Archivos de log del agente.
-
-## Roadmap
-Consultar el archivo `OBJETIVOS_AGENTE_MVP.md` para ver el plan de desarrollo detallado y las futuras fases.
-
-## Datos Generados (CSV)
-Los CSVs generados contienen información detallada de los listings de Google Maps. Las columnas principales incluyen (pero no se limitan a):
-- `title`: Nombre del negocio.
-- `category`: Categoría del negocio.
-- `address` / `complete_address`: Dirección.
-- `phone`: Número de teléfono.
-- `website`: Sitio web.
-- `review_count`, `review_rating`: Información de reseñas.
-- `latitude`, `longitude`: Coordenadas.
-- `parsed_city`: Ciudad extraída de la dirección.
-*(Añadir más detalles a medida que el esquema de transformación se solidifique)*
-
----
-```
-
-**Próximos Pasos Inmediatos (Siguiendo el Roadmap MVP):**
-
-1.  **Crear la Estructura de Carpetas:** Tal como se describió.
-2.  **Poblar los Archivos `.md`:** Copia el contenido que te proporcioné para `README.md` y `OBJETIVOS_AGENTE_MVP.md`.
-3.  **Crear Archivos de Configuración Iniciales:**
-    *   `config/keywords_neuquen.csv` (con algunas keywords de prueba).
-    *   `config/parameters_default.json` (ej. `{"language": "es", "default_depth": 2, "results_filename_prefix": "gmaps_neuquen_"}`).
-4.  **Comenzar el Desarrollo del Notebook Principal del MVP: `notebooks/2_MVP_Scraping_Transform_CSV.ipynb`**.
-    *   **Paso 1 del Notebook:** Leer las configuraciones de `config/`.
-    *   **Paso 2 del Notebook:** Construir el comando `docker run gosom/google-maps-scraper ...` dinámicamente y ejecutarlo con `subprocess.run()`. Asegúrate de que los volúmenes estén bien mapeados para que el CSV de salida se guarde en `data/raw/`.
-    *   **Paso 3 del Notebook:** Leer el CSV de `data/raw/` en un DataFrame.
-    *   **Paso 4 del Notebook:** Aplicar las transformaciones (puedes reusar el código del EDA, como `extract_city_from_gmaps`).
-    *   **Paso 5 del Notebook:** Guardar el DataFrame transformado en `data/processed/`.
-    *   **Paso 6 del Notebook:** Implementar logging básico con el módulo `logging`.
-
-Este enfoque MVP te permitirá avanzar rápidamente, tener resultados visibles y luego construir sobre una base sólida hacia la solución más compleja y robusta que tienes en mente. ¡Este plan se alinea perfectamente con tu filosofía de desarrollo!
