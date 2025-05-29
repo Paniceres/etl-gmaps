@@ -3,108 +3,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/gosom/google-maps-scraper)](https://goreportcard.com/report/github.com/gosom/google-maps-scraper)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Chat-7289DA?logo=discord&logoColor=white)](https://discord.gg/fpaAVhNCCu)
 
-> A free and open-source Google Maps scraper with both command line and web UI options. This tool is easy to use and allows you to extract data from Google Maps efficiently.
-
-## Join Our Community
-
-[![Discord](https://img.shields.io/badge/Discord-Join%20Chat-7289DA?logo=discord&logoColor=white)](https://discord.gg/fpaAVhNCCu)
-
-Join our Discord server to get help, share ideas, and connect with other users of the Google Maps Scraper!
-
-## 🚀 Take Your Lead Generation to the Next Level
-
-**Tired of manual data collection? Meet LeadsDB - an API service that integrates with this scraper.**
-
-[LeadsDB](https://gm.thexos.dev/) enhances your lead generation with:
-- ✅ Cloud storage for all your search results
-- ✅ Visualization dashboard
-- ✅ Advanced filtering & export options
-- ✅ Simple API integration with this scraper
-- ✅ Expose your data to other services via a REST API
-
-Plans start at just €4.99/month
-
-**[Join the waitlist →](https://gm.thexos.dev/)**
-
-_Continue using this free scraper and supercharge your workflow with LeadsDB._
-
-## Sponsors
-
-
-### Supported by the Community
-
-This project relies on the support of its users and sponsors to stay alive and improve. If you find it useful, here’s how you can help:
-
-- ⭐ **Star the repository** to show your support and help others discover it.
-- ❤️ **Sponsor the project** to contribute directly to its development. [Become a sponsor →](https://github.com/sponsors/gosom)
-- 🤝 **Use the services of our sponsors** to support the project while benefiting from their offerings.
-
-Your support ensures the project remains maintained and continues to grow. Thank you!
-
-### Premium Sponsors
-
-**No time for code? Extract ALL Google Maps listings at country-scale in 2 clicks, without keywords or limits** 👉 [Try it now for free](https://scrap.io?utm_medium=ads&utm_source=github_gosom_gmap_scraper)
-
-[![Extract ALL Google Maps Listings](./img/premium_scrap_io.png)](https://scrap.io?utm_medium=ads&utm_source=github_gosom_gmap_scraper)
-
-<hr>
-
-<table>
-<tr>
-<td><img src="./img/SerpApi-logo-w.png" alt="SerpApi Logo" width="100"></td>
-<td>
-<b>At SerpApi, we scrape public data from Google Maps and other top search engines.</b>
-
-You can find the full list of our APIs here: [https://serpapi.com/search-api](https://serpapi.com/search-api)
-</td>
-</tr>
-</table>
-
-[![SerpApi Banner](./img/SerpApi-banner.png)](https://serpapi.com/?utm_source=google-maps-scraper)
-
-<hr>
-
-**G Maps Extractor**  
-A no-code Google Maps scraper that pulls business leads from Google Maps in one click.
-
-- 📇 **Includes** emails, social profiles, phone numbers, addresses, reviews, images and more.
-- 📥 **Export** to CSV · Excel · JSON  
-- 🎁 **Free**: Get your first **1,000 leads** today  
-[Get Started for Free](https://gmapsextractor.com?utm_source=github&utm_medium=banner&utm_campaign=gosom)
-
-[![Gmaps Extractor](./img/gmaps-extractor-banner.png)](https://gmapsextractor.com?utm_source=github&utm_medium=banner&utm_campaign=gosom)
-
-</hr>
-
-### Special Thanks to:
-
-[![Google Maps API for easy SERP scraping](https://www.searchapi.io/press/v1/svg/searchapi_logo_black_h.svg)](https://www.searchapi.io/google-maps?via=gosom)
-**Google Maps API for easy SERP scraping**
-
-<hr>
-
-[Evomi](https://evomi.com?utm_source=github&utm_medium=banner&utm_campaign=gosom-maps) is your Swiss Quality Proxy Provider, starting at **$0.49/GB**
-
-[![Evomi Banner](https://my.evomi.com/images/brand/cta.png)](https://evomi.com?utm_source=github&utm_medium=banner&utm_campaign=gosom-maps)
-
-<hr>
-
-[Scrapeless](https://www.scrapeless.com/): One-click to scrape Google search results, supporting 15+ SERP scenarios such as Google Maps/Scholars/Jobs, $0.1/thousand queries, 0.2s response.
-
-**[👉 Free Trial](https://app.scrapeless.com/passport/login?utm_source=gosom&utm_campaign=google-maps)**
-
-![Scrapeless](./img/scrapeless_dark.png#gh-dark-mode-only)
-
-![Scrapeless](./img/scrapeless_light.png#gh-light-mode-only)
-
-
-
-<hr>
-
-
 ## What Google maps scraper does
 
-A command line and web based google maps scraper build using 
+A command line and web based google maps scraper build using
 
 [scrapemate](https://github.com/gosom/scrapemate) web crawling framework.
 
@@ -152,15 +53,15 @@ For detailed API documentation, refer to the OpenAPI 3.0.3 specification availab
 
 ## 🌟 Support the Project!
 
-If you find this tool useful, consider giving it a **star** on GitHub. 
-Feel free to check out the **Sponsor** button on this repository to see how you can further support the development of this project. 
+If you find this tool useful, consider giving it a **star** on GitHub.
+Feel free to check out the **Sponsor** button on this repository to see how you can further support the development of this project.
 Your support helps ensure continued improvement and maintenance.
 
 
 ## Features
 
 - Extracts many data points from google maps
-- Exports the data to CSV, JSON or PostgreSQL 
+- Exports the data to CSV, JSON or PostgreSQL
 - Performance about 120 urls per minute (-depth 1 -c 8)
 - Extendable to write your own exporter
 - Dockerized for easy run in multiple platforms
@@ -172,25 +73,25 @@ Your support helps ensure continued improvement and maintenance.
 
 ## Notes on email extraction
 
-By default email extraction is disabled. 
+By default email extraction is disabled.
 
-If you enable email extraction (see quickstart) then the scraper will visit the 
+If you enable email extraction (see quickstart) then the scraper will visit the
 website of the business (if exists) and it will try to extract the emails from the
 page.
 
-For the moment it only checks only one page of the website (the one that is registered in Gmaps). At some point, it will be added support to try to extract from other pages like about, contact, impressum etc. 
+For the moment it only checks only one page of the website (the one that is registered in Gmaps). At some point, it will be added support to try to extract from other pages like about, contact, impressum etc.
 
 
 Keep in mind that enabling email extraction results to larger processing time, since more
-pages are scraped. 
+pages are scraped.
 
 ## Fast Mode
 
 Fast mode returns you at most 21 search results per query ordered by distance from the **latitude** and **longitude** provided.
 All the results are within the specified **radius**
 
-It does not contain all the data points but basic ones. 
-However it provides the ability to extract data really fast. 
+It does not contain all the data points but basic ones.
+However it provides the ability to extract data really fast.
 
 When you use the fast mode ensure that you have provided:
 - zoom
@@ -332,7 +233,7 @@ file `results.csv` will contain the parsed results.
 **If you want emails use additionally the `-email` parameter**
 
 **All Reviews**
-You can fetch up to around 300 reviews instead of the first 8 by using the 
+You can fetch up to around 300 reviews instead of the first 8 by using the
 command line parameter `--extra-reviews`. If you do that I recommend you use JSON
 output instead of CSV.
 
@@ -430,7 +331,7 @@ try `./google-maps-scraper -h` to see the command line options available:
 
 In cases the results need to be written in a custom format or in another system like a db a message queue or basically anything the Go plugin system can be utilized.
 
-Write a Go plugin (see an example in examples/plugins/example_writeR.go) 
+Write a Go plugin (see an example in examples/plugins/example_writeR.go)
 
 Compile it using (for Linux):
 
@@ -438,7 +339,7 @@ Compile it using (for Linux):
 go build -buildmode=plugin -tags=plugin -o ~/mytest/plugins/example_writer.so examples/plugins/example_writer.go
 ```
 
-and then run the program using the `-writer` argument. 
+and then run the program using the `-writer` argument.
 
 See an example:
 
@@ -485,7 +386,7 @@ go run main.go -dsn "postgres://postgres:postgres@localhost:5432/postgres" -prod
 
 (configure your queries and the desired language)
 
-This will populate the table `gmaps_jobs` . 
+This will populate the table `gmaps_jobs` .
 
 you may run the scraper using:
 
@@ -526,14 +427,14 @@ spec:
         args: ["-c", "1", "-depth", "10", "-dsn", "postgres://{DBUSER}:{DBPASSWD@DBHOST}:{DBPORT}/{DBNAME}", "-lang", "{LANGUAGE_CODE}"]
 ```
 
-Please replace the values or the command args accordingly 
+Please replace the values or the command args accordingly
 
-Note: Keep in mind that because the application starts a headless browser it requires CPU and memory. 
+Note: Keep in mind that because the application starts a headless browser it requires CPU and memory.
 Use an appropriate kubernetes cluster
 
 ## Telemetry
 
-Anonymous usage statistics are collected for debug and improvement reasons. 
+Anonymous usage statistics are collected for debug and improvement reasons.
 You can opt out by setting the env variable `DISABLE_TELEMETRY=1`
 
 ## Performance
@@ -541,7 +442,7 @@ You can opt out by setting the env variable `DISABLE_TELEMETRY=1`
 Expected speed with concurrency of 8 and depth 1 is 120 jobs/per minute.
 Each search is 1 job + the number or results it contains.
 
-Based on the above: 
+Based on the above:
 if we have 1000 keywords to search with each contains 16 results => 1000 * 16 = 16000 jobs.
 
 We expect this to take about 16000/120 ~ 133 minutes ~ 2.5 hours
@@ -619,12 +520,12 @@ Thank you for considering support for the project. Every bit of assistance helps
 </a>
 </td>
 <td>
-<b>G Maps Extractor</b>  
+<b>G Maps Extractor</b>
 A no-code Google Maps scraper that pulls business leads from Google Maps in one click.
 
 - 📇 **Includes** emails, social profiles, phone numbers, addresses, reviews, images and more.
-- 📥 **Export** to CSV · Excel · JSON  
-- 🎁 **Free**: Get your first **1,000 leads** today  
+- 📥 **Export** to CSV · Excel · JSON
+- 🎁 **Free**: Get your first **1,000 leads** today
 <a href="https://gmapsextractor.com?utm_source=github&utm_medium=banner&utm_campaign=gosom">Get Started for Free</a>
 </td>
 </tr>
