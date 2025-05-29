@@ -51,12 +51,6 @@ The Google Maps Scraper provides a RESTful API for programmatic management of sc
 For detailed API documentation, refer to the OpenAPI 3.0.3 specification available through Swagger UI or Redoc when running the app https://localhost:8080/api/docs
 
 
-## 🌟 Support the Project!
-
-If you find this tool useful, consider giving it a **star** on GitHub.
-Feel free to check out the **Sponsor** button on this repository to see how you can further support the development of this project.
-Your support helps ensure continued improvement and maintenance.
-
 
 ## Features
 
@@ -246,11 +240,11 @@ output instead of CSV.
 
 
 ```
-git clone https://github.com/gosom/google-maps-scraper.git
-cd google-maps-scraper
+git clone https://github.com/Paniceres/etl-gmaps.git
+cd etl-gmaps
 go mod download
 go build
-./google-maps-scraper -input example-queries.txt -results restaurants-in-cyprus.csv -exit-on-inactivity 3m
+./etl-gmaps -input example-queries.txt -results restaurants-in-cyprus.csv -exit-on-inactivity 3m
 ```
 
 Be a little bit patient. In the first run it downloads required libraries.
@@ -345,8 +339,8 @@ See an example:
 
 1. Write your plugin (use the examples/plugins/example_writer.go as a reference)
 2. Build your plugin `go build -buildmode=plugin -tags=plugin -o ~/myplugins/example_writer.so plugins/example_writer.go`
-3. Download the lastes [release](https://github.com/gosom/google-maps-scraper/releases/) or build the program
-4. Run the program like `./google-maps-scraper -writer ~/myplugins:DummyPrinter -input example-queries.txt`
+3. Download the lastes [release](https://github.com/Paniceres/etl-gmaps/releases/) or build the program
+4. Run the program like `./etl-gmaps -writer ~/myplugins:DummyPrinter -input example-queries.txt`
 
 
 ### Plugins and Docker
@@ -409,11 +403,11 @@ Assuming you have a kubernetes cluster and a database that is accessible from th
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: google-maps-scraper
+  name: [url] <-----------------
 spec:
   selector:
     matchLabels:
-      app: goohttps://www.scrapeless.com/gle-maps-scraper
+      app: google-maps-scraper (url)
   replicas: {NUM_OF_REPLICAS}
   template:
     metadata:
@@ -471,98 +465,6 @@ Please open an ISSUE or make a Pull Request
 
 Thank you for considering support for the project. Every bit of assistance helps maintain momentum and enhances the scraper’s capabilities!
 
-
-
-
-## Sponsors
-
-### Special Thanks to:
-
-[Scrapeless](https://www.scrapeless.com/): One-click to scrape Google search results, supporting 15+ SERP scenarios such as Google Maps/Scholars/Jobs, $0.1/thousand queries, 0.2s response.
-
-**[👉 Free Trial](https://app.scrapeless.com/passport/login?utm_source=gosom&utm_campaign=google-maps)**
-
-![Scrapeless](./img/scrapeless_dark.png#gh-dark-mode-only)
-
-![Scrapeless](./img/scrapeless_light.png#gh-light-mode-only)
-
-
-<br>
-
-[Evomi](https://evomi.com?utm_source=github&utm_medium=banner&utm_campaign=gosom-maps) is your Swiss Quality Proxy Provider, starting at **$0.49/GB**
-
-- 👩‍💻 **$0.49 per GB Residential Proxies**: Our price is unbeatable
-- 👩‍💻 **24/7 Expert Support**: We will join your Slack Channel
-- 🌍 **Global Presence**: Available in 150+ Countries
-- ⚡ **Low Latency**
-- 🔒 **Swiss Quality and Privacy**
-- 🎁 **Free Trial**
-- 🛡️ **99.9% Uptime**
-- 🤝 **Special IP Pool selection**: Optimize for fast, quality or quantity of ips
-- 🔧 **Easy Integration**: Compatible with most software and programming languages
-
-[![Evomi Banner](https://my.evomi.com/images/brand/cta.png)](https://evomi.com?utm_source=github&utm_medium=banner&utm_campaign=gosom-maps)
-
-<br>
-
-[![Google Maps API for easy SERP scraping](https://www.searchapi.io/press/v1/svg/searchapi_logo_black_h.svg)](https://www.searchapi.io/google-maps?via=gosom)
-**Google Maps API for easy SERP scraping**
-
-
-
-### Premium Sponsors
-
-<table>
-<tr>
-<td>
-<a href="https://gmapsextractor.com?utm_source=github&utm_medium=banner&utm_campaign=gosom">
-<img src="img/gmaps-extractor-logo.png" alt="G Maps Extractor Logo" width="100">
-</a>
-</td>
-<td>
-<b>G Maps Extractor</b>
-A no-code Google Maps scraper that pulls business leads from Google Maps in one click.
-
-- 📇 **Includes** emails, social profiles, phone numbers, addresses, reviews, images and more.
-- 📥 **Export** to CSV · Excel · JSON
-- 🎁 **Free**: Get your first **1,000 leads** today
-<a href="https://gmapsextractor.com?utm_source=github&utm_medium=banner&utm_campaign=gosom">Get Started for Free</a>
-</td>
-</tr>
-</table>
-<hr>
-
-<table>
-<tr>
-<td><img src="./img/SerpApi-logo-w.png" alt="SerpApi Logo" width="100"></td>
-<td>
-<b>At SerpApi, we scrape public data from Google Maps and other top search engines.</b>
-
-You can find the full list of our APIs here: [https://serpapi.com/search-api](https://serpapi.com/search-api)
-</td>
-</tr>
-</table>
-
-For more information, see [document](serpapi.md).
-
-
-<hr>
-
-**No time for code? Extract ALL Google Maps listings at country-scale in 2 clicks, without keywords or limits** 👉 [Try it now for free](https://scrap.io?utm_medium=ads&utm_source=github_gosom_gmap_scraper)
-
-[![Extract ALL Google Maps Listings](./img/premium_scrap_io.png)](https://scrap.io?utm_medium=ads&utm_source=github_gosom_gmap_scraper)
-
-For more information, see [scrap.io demo](scrap_io.md).
-
-
-### Supported by the Community
-
-[Supported by the community](https://github.com/sponsors/gosom)
-
-
 ## Notes
 
 Please use this scraper responsibly and in accordance with all applicable laws and regulations. Unauthorized scraping of data may violate the terms of service of the website being scraped.
-
-banner is generated using OpenAI's DALL-E
-> **Note:** If you register via the links on my page, I may get a commission. This is another way to support my work
