@@ -1,395 +1,782 @@
-2025-05-28 14:37:54 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-28 14:37:54 - INFO - [ OK ] Archivo de configuración 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-28 14:37:54 - INFO - 
+
+2025-05-30 19:42:01 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 19:42:01 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 19:42:01 - INFO - 
 ================================================================================
 CARGANDO PARÁMETROS GLOBALES DEL AGENTE
 ================================================================================
-2025-05-28 14:37:54 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-28 14:37:54 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-28 14:37:54 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-28 14:37:54 - INFO - [INFO] Carpeta para CSVs crudos: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-28 14:37:54 - INFO - [INFO] Carpeta para CSVs procesados: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-28 14:37:54 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-28 14:37:54 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-28 14:37:54 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-28 14:37:54 - INFO - 
+2025-05-30 19:42:01 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 19:42:01 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 19:42:01 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 19:42:01 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 19:42:01 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 19:42:01 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 19:42:01 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 19:42:01 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 19:42:01 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIONES DE UTILIDAD
 ================================================================================
-2025-05-28 14:37:54 - INFO - 
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Función para Cargar Keywords
 ------------------------------------------------------------
-2025-05-28 14:37:54 - INFO - 
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Probando Carga de Keywords
 ------------------------------------------------------------
-2025-05-28 14:37:54 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
-2025-05-28 14:37:54 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-28 14:37:54 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
-2025-05-28 14:37:54 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
-2025-05-28 14:37:54 - ERROR - [FAIL] Archivo de keywords no encontrado para 'ciudad_totalmente_inventada' en 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv'.
-2025-05-28 14:37:54 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
-2025-05-28 14:37:56 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-28 14:37:56 - INFO - [ OK ] Archivo de configuración 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-28 14:37:56 - INFO - 
-================================================================================
-CARGANDO PARÁMETROS GLOBALES DEL AGENTE
-================================================================================
-2025-05-28 14:37:56 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-28 14:37:56 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-28 14:37:56 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-28 14:37:56 - INFO - [INFO] Carpeta para CSVs crudos: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-28 14:37:56 - INFO - [INFO] Carpeta para CSVs procesados: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-28 14:37:56 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-28 14:37:56 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-28 14:37:56 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-28 14:38:17 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-28 14:38:17 - INFO - [ OK ] Archivo de configuración 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-28 14:38:17 - INFO - 
-================================================================================
-CARGANDO PARÁMETROS GLOBALES DEL AGENTE
-================================================================================
-2025-05-28 14:38:17 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-28 14:38:17 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-28 14:38:17 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-28 14:38:17 - INFO - [INFO] Carpeta para CSVs crudos: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-28 14:38:17 - INFO - [INFO] Carpeta para CSVs procesados: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-28 14:38:17 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-28 14:38:17 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-28 14:38:17 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-28 14:38:33 - INFO - 
-================================================================================
-DEFINIENDO FUNCIONES DE UTILIDAD
-================================================================================
-2025-05-28 14:38:33 - INFO - 
-------------------------------------------------------------
-Función para Cargar Keywords
-------------------------------------------------------------
-2025-05-28 14:38:33 - INFO - 
-------------------------------------------------------------
-Probando Carga de Keywords
-------------------------------------------------------------
-2025-05-28 14:38:33 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
-2025-05-28 14:38:33 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-28 14:38:33 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
-2025-05-28 14:38:33 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
-2025-05-28 14:38:33 - ERROR - [FAIL] Archivo de keywords no encontrado para 'ciudad_totalmente_inventada' en 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv'.
-2025-05-28 14:38:33 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
-2025-05-29 11:26:24 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-29 11:26:24 - INFO - [ OK ] Archivo de configuración 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-29 11:26:24 - INFO - 
-================================================================================
-CARGANDO PARÁMETROS GLOBALES DEL AGENTE
-================================================================================
-2025-05-29 11:26:24 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-29 11:26:24 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-29 11:26:24 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-29 11:26:24 - INFO - [INFO] Carpeta para CSVs crudos: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-29 11:26:24 - INFO - [INFO] Carpeta para CSVs procesados: c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-29 11:26:24 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-29 11:26:24 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-29 11:26:24 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-29 11:26:24 - INFO - 
-================================================================================
-DEFINIENDO FUNCIONES DE UTILIDAD
-================================================================================
-2025-05-29 11:26:24 - INFO - 
-------------------------------------------------------------
-Función para Cargar Keywords
-------------------------------------------------------------
-2025-05-29 11:26:24 - INFO - 
-------------------------------------------------------------
-Probando Carga de Keywords
-------------------------------------------------------------
-2025-05-29 11:26:24 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
-2025-05-29 11:26:24 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-29 11:26:24 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
-2025-05-29 11:26:24 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
-2025-05-29 11:26:24 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
-2025-05-29 11:26:24 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 19:42:01 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:01 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 19:42:01 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 19:42:01 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 19:42:01 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 19:42:01 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
 ================================================================================
-2025-05-29 11:26:24 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
+2025-05-30 19:42:01 - INFO - 
 ================================================================================
 ORQUESTANDO TAREAS DE SCRAPING
 ================================================================================
-2025-05-29 11:26:24 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-29 11:26:24 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-29 11:26:24 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-29 11:26:24 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-29 11:26:24 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:01 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:01 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:01 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:01 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Neuquen
 ------------------------------------------------------------
-2025-05-29 11:26:24 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-29 11:26:24 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
-2025-05-29 11:26:24 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-29 11:26:24 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-29 11:26:24 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:01 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
+2025-05-30 19:42:01 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:01 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:01 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: General_roca
 ------------------------------------------------------------
-2025-05-29 11:26:24 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
-2025-05-29 11:26:24 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
-2025-05-29 11:26:24 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-29 11:26:24 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-29 11:26:24 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
+2025-05-30 19:42:01 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
+2025-05-30 19:42:01 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:01 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:01 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Cipolletti
 ------------------------------------------------------------
-2025-05-29 11:26:24 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
-2025-05-29 11:26:24 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
-2025-05-29 11:26:24 - INFO - 
+2025-05-30 19:42:01 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
+2025-05-30 19:42:01 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
+2025-05-30 19:42:01 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Allen
 ------------------------------------------------------------
-2025-05-29 11:26:24 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\Users\El Bauto\Documents\MEGA\Generative_ai\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
-2025-05-29 11:26:24 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
-2025-05-29 11:26:24 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
-2025-05-29 11:26:24 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
-2025-05-29 11:26:25 - INFO - 
+2025-05-30 19:42:01 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
+2025-05-30 19:42:01 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
+2025-05-30 19:42:01 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 19:42:01 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 19:42:02 - INFO - 
 ================================================================================
 CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
 ================================================================================
-2025-05-29 11:26:25 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
-2025-05-29 11:26:25 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
-2025-05-29 11:26:25 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
-2025-05-29 11:26:25 - INFO - 
+2025-05-30 19:42:02 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 19:42:02 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 19:42:02 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 19:42:02 - INFO - 
 ================================================================================
 GUARDANDO DATOS PROCESADOS Y LIMPIOS
 ================================================================================
-2025-05-29 11:26:25 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
-2025-05-29 11:26:25 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
-2025-05-30 15:40:49 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-30 15:40:49 - INFO - [ OK ] Archivo de configuración 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:02 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 19:42:02 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 19:42:05 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 19:42:05 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 19:42:05 - INFO - 
 ================================================================================
 CARGANDO PARÁMETROS GLOBALES DEL AGENTE
 ================================================================================
-2025-05-30 15:40:49 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-30 15:40:49 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-30 15:40:49 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-30 15:40:49 - INFO - [INFO] Carpeta para CSVs crudos: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-30 15:40:49 - INFO - [INFO] Carpeta para CSVs procesados: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-30 15:40:49 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-30 15:40:49 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-30 15:40:49 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:05 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 19:42:05 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 19:42:05 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 19:42:05 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 19:42:05 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 19:42:05 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 19:42:05 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 19:42:05 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 19:42:05 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIONES DE UTILIDAD
 ================================================================================
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:05 - INFO - 
 ------------------------------------------------------------
 Función para Cargar Keywords
 ------------------------------------------------------------
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:05 - INFO - 
 ------------------------------------------------------------
 Probando Carga de Keywords
 ------------------------------------------------------------
-2025-05-30 15:40:49 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
-2025-05-30 15:40:49 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:40:49 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
-2025-05-30 15:40:49 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
-2025-05-30 15:40:49 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
-2025-05-30 15:40:49 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:05 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 19:42:05 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:05 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 19:42:05 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 19:42:05 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 19:42:05 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 19:42:05 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
 ================================================================================
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 19:42:05 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
+2025-05-30 19:42:05 - INFO - 
+================================================================================
+ORQUESTANDO TAREAS DE SCRAPING
+================================================================================
+2025-05-30 19:42:05 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:05 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:05 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:05 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:05 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 19:42:05 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Neuquen
+------------------------------------------------------------
+2025-05-30 19:42:05 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:05 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
+2025-05-30 19:42:05 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:05 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:05 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:05 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: General_roca
+------------------------------------------------------------
+2025-05-30 19:42:05 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
+2025-05-30 19:42:05 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
+2025-05-30 19:42:05 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:05 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:05 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:05 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Cipolletti
+------------------------------------------------------------
+2025-05-30 19:42:05 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
+2025-05-30 19:42:05 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
+2025-05-30 19:42:05 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Allen
+------------------------------------------------------------
+2025-05-30 19:42:05 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
+2025-05-30 19:42:05 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
+2025-05-30 19:42:05 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 19:42:05 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 19:42:05 - INFO - 
+================================================================================
+CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
+================================================================================
+2025-05-30 19:42:05 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 19:42:05 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 19:42:05 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 19:42:05 - INFO - 
+================================================================================
+GUARDANDO DATOS PROCESADOS Y LIMPIOS
+================================================================================
+2025-05-30 19:42:05 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 19:42:05 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 19:42:11 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 19:42:11 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 19:42:11 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 19:42:11 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 19:42:11 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 19:42:11 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 19:42:11 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 19:42:11 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 19:42:11 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 19:42:11 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 19:42:11 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 19:42:11 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 19:42:11 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 19:42:11 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:11 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 19:42:11 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 19:42:11 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 19:42:11 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 19:42:11 - INFO - 
+================================================================================
+DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
+================================================================================
+2025-05-30 19:42:11 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
+2025-05-30 19:42:11 - INFO - 
+================================================================================
+ORQUESTANDO TAREAS DE SCRAPING
+================================================================================
+2025-05-30 19:42:11 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:11 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:11 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:11 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:42:11 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Neuquen
+------------------------------------------------------------
+2025-05-30 19:42:11 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:42:11 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
+2025-05-30 19:42:11 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:11 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:11 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: General_roca
+------------------------------------------------------------
+2025-05-30 19:42:11 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
+2025-05-30 19:42:11 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
+2025-05-30 19:42:11 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:42:11 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:42:11 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Cipolletti
+------------------------------------------------------------
+2025-05-30 19:42:11 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
+2025-05-30 19:42:11 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
+2025-05-30 19:42:11 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Allen
+------------------------------------------------------------
+2025-05-30 19:42:11 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
+2025-05-30 19:42:11 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
+2025-05-30 19:42:11 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 19:42:11 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 19:42:12 - INFO - 
+================================================================================
+CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
+================================================================================
+2025-05-30 19:42:12 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 19:42:12 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 19:42:12 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 19:42:12 - INFO - 
+================================================================================
+GUARDANDO DATOS PROCESADOS Y LIMPIOS
+================================================================================
+2025-05-30 19:42:12 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 19:42:12 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 19:44:16 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 19:44:16 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 19:44:16 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 19:44:16 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 19:44:16 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 19:44:16 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 19:44:16 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 19:44:16 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 19:44:16 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 19:44:16 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 19:44:16 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 19:44:16 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:44:16 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 19:44:16 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 19:44:16 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 19:44:16 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
+================================================================================
+2025-05-30 19:44:16 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+ORQUESTANDO TAREAS DE SCRAPING
+================================================================================
+2025-05-30 19:44:16 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:44:16 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:44:16 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:44:16 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:44:16 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Neuquen
+------------------------------------------------------------
+2025-05-30 19:44:16 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:44:16 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
+2025-05-30 19:44:16 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:44:16 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:44:16 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: General_roca
+------------------------------------------------------------
+2025-05-30 19:44:16 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
+2025-05-30 19:44:16 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
+2025-05-30 19:44:16 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:44:16 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:44:16 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Cipolletti
+------------------------------------------------------------
+2025-05-30 19:44:16 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
+2025-05-30 19:44:16 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
+2025-05-30 19:44:16 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Allen
+------------------------------------------------------------
+2025-05-30 19:44:16 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
+2025-05-30 19:44:16 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
+2025-05-30 19:44:16 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 19:44:16 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
+================================================================================
+2025-05-30 19:44:16 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 19:44:16 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 19:44:16 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 19:44:16 - INFO - 
+================================================================================
+GUARDANDO DATOS PROCESADOS Y LIMPIOS
+================================================================================
+2025-05-30 19:44:16 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 19:44:16 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 19:52:02 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 19:52:02 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 19:52:02 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 19:52:02 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 19:52:02 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 19:52:02 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 19:52:02 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 19:52:02 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 19:52:02 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 19:52:02 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 19:52:02 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 19:52:02 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:52:02 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 19:52:02 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 19:52:02 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 19:52:02 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
+================================================================================
+2025-05-30 19:52:02 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+ORQUESTANDO TAREAS DE SCRAPING
+================================================================================
+2025-05-30 19:52:02 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:52:02 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:52:02 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:52:02 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 19:52:02 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Neuquen
+------------------------------------------------------------
+2025-05-30 19:52:02 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 19:52:02 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
+2025-05-30 19:52:02 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:52:02 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:52:02 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: General_roca
+------------------------------------------------------------
+2025-05-30 19:52:02 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
+2025-05-30 19:52:02 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
+2025-05-30 19:52:02 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 19:52:02 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 19:52:02 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Cipolletti
+------------------------------------------------------------
+2025-05-30 19:52:02 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
+2025-05-30 19:52:02 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
+2025-05-30 19:52:02 - INFO - 
+------------------------------------------------------------
+Procesando Ciudad: Allen
+------------------------------------------------------------
+2025-05-30 19:52:02 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
+2025-05-30 19:52:02 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
+2025-05-30 19:52:02 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 19:52:02 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
+================================================================================
+2025-05-30 19:52:02 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 19:52:02 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 19:52:02 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 19:52:02 - INFO - 
+================================================================================
+GUARDANDO DATOS PROCESADOS Y LIMPIOS
+================================================================================
+2025-05-30 19:52:02 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 19:52:02 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 20:00:10 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:00:10 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:00:10 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 20:00:10 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:00:10 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:00:10 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:00:10 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:00:10 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:00:10 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:00:10 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:00:10 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:00:10 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 20:00:10 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 20:00:10 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 20:00:10 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:00:10 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:00:10 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 20:00:10 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:00:10 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:00:10 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:00:29 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:00:29 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:00:29 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 20:00:29 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:00:29 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:00:29 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:00:29 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:00:29 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:00:29 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:00:29 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:00:29 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:00:29 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 20:00:29 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 20:00:29 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 20:00:29 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:00:29 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:00:29 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 20:00:29 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:00:29 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:00:29 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:00:51 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:00:51 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:00:51 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 20:00:51 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:00:51 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:00:51 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:00:51 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:00:51 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:00:51 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:00:51 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:00:51 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:00:51 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 20:00:51 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 20:00:51 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 20:00:51 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:00:51 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:00:51 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 20:00:51 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:00:51 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:00:51 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:01:09 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:01:09 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:01:09 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 20:01:09 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:01:09 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:01:09 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:01:09 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:01:09 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:01:09 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:01:09 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:01:09 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:01:09 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 20:01:09 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 20:01:09 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 20:01:09 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:01:09 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:01:09 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 20:01:09 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:01:09 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:01:09 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:04:45 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:04:45 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:04:45 - INFO - 
+================================================================================
+CARGANDO PARÁMETROS GLOBALES DEL AGENTE
+================================================================================
+2025-05-30 20:04:45 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:04:45 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:04:45 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:04:45 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:04:45 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:04:45 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:04:45 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:04:45 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:04:45 - INFO - 
+================================================================================
+DEFINIENDO FUNCIONES DE UTILIDAD
+================================================================================
+2025-05-30 20:04:45 - INFO - 
+------------------------------------------------------------
+Función para Cargar Keywords
+------------------------------------------------------------
+2025-05-30 20:04:45 - INFO - 
+------------------------------------------------------------
+Probando Carga de Keywords
+------------------------------------------------------------
+2025-05-30 20:04:45 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:04:45 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:04:45 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
+2025-05-30 20:04:45 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:04:45 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:04:45 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:04:45 - INFO - 
+================================================================================
+DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
+================================================================================
+2025-05-30 20:04:45 - INFO - 
 ================================================================================
 PROBANDO EJECUCIÓN DEL SCRAPER GOSOM PARA NEUQUÉN
 ================================================================================
-2025-05-30 15:40:49 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:40:49 - INFO - [INFO] Iniciando prueba de scraping real para: Neuquen con 4 keywords.
-2025-05-30 15:40:49 - INFO - 
+2025-05-30 20:04:45 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
+2025-05-30 20:04:45 - INFO - [INFO] Iniciando prueba de scraping real para: Neuquen con 4 keywords.
+2025-05-30 20:04:45 - INFO - 
 ------------------------------------------------------------
 Iniciando scraping para ciudad: 'Neuquen'
 ------------------------------------------------------------
-2025-05-30 15:40:49 - INFO - [INFO] Usando profundidad de búsqueda: 1
-2025-05-30 15:40:49 - INFO - [INFO] Creando archivo temporal de queries en: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_154049.txt
-2025-05-30 15:40:49 - INFO - [ OK ] Archivo temporal de queries creado con 4 keywords.
-2025-05-30 15:40:49 - INFO - [INFO] Creando archivo de salida CSV vacío en: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_154049.csv
-2025-05-30 15:40:49 - INFO - [ OK ] Archivo de salida CSV vacío creado.
-2025-05-30 15:40:49 - INFO - [INFO] Ejecutando comando Docker: docker run --rm -v c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250530_154049.txt -results /app/data/raw/gmaps_data_neuquen_20250530_154049.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591
-2025-05-30 15:40:51 - ERROR - [FAIL] Error durante el scraping para 'neuquen'. Código de retorno: 127
-2025-05-30 15:40:51 - ERROR - [FAIL] Salida de error estándar del scraper (stderr) en error:
-docker: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
-
-Run 'docker run --help' for more information
-2025-05-30 15:40:51 - INFO - [INFO] Archivo temporal de queries eliminado: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_154049.txt
-2025-05-30 15:40:51 - ERROR - [FAIL] PRUEBA DE SCRAPING FALLÓ para Neuquen. Revisa los logs.
-2025-05-30 15:40:51 - INFO - 
-================================================================================
-ORQUESTANDO TAREAS DE SCRAPING
-================================================================================
-2025-05-30 15:40:51 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:40:51 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:40:51 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:40:51 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:40:51 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
-2025-05-30 15:40:51 - INFO - 
-------------------------------------------------------------
-Procesando Ciudad: Neuquen
-------------------------------------------------------------
-2025-05-30 15:40:51 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:40:51 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
-2025-05-30 15:40:51 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-30 15:40:51 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-30 15:40:51 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-30 15:40:51 - INFO - 
-------------------------------------------------------------
-Procesando Ciudad: General_roca
-------------------------------------------------------------
-2025-05-30 15:40:51 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
-2025-05-30 15:40:51 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
-2025-05-30 15:40:51 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-30 15:40:51 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-30 15:40:51 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-30 15:40:51 - INFO - 
-------------------------------------------------------------
-Procesando Ciudad: Cipolletti
-------------------------------------------------------------
-2025-05-30 15:40:51 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
-2025-05-30 15:40:51 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
-2025-05-30 15:40:51 - INFO - 
-------------------------------------------------------------
-Procesando Ciudad: Allen
-------------------------------------------------------------
-2025-05-30 15:40:51 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
-2025-05-30 15:40:51 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
-2025-05-30 15:40:51 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
-2025-05-30 15:40:51 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
-2025-05-30 15:40:51 - INFO - 
-================================================================================
-CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
-================================================================================
-2025-05-30 15:40:51 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
-2025-05-30 15:40:51 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
-2025-05-30 15:40:51 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
-2025-05-30 15:40:51 - INFO - 
-================================================================================
-GUARDANDO DATOS PROCESADOS Y LIMPIOS
-================================================================================
-2025-05-30 15:40:51 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
-2025-05-30 15:40:51 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
-2025-05-30 15:42:55 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
-2025-05-30 15:42:55 - INFO - [ OK ] Archivo de configuración 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:04:45 - INFO - [INFO] Usando profundidad de búsqueda: 1
+2025-05-30 20:04:45 - INFO - [INFO] Creando archivo temporal de queries en: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_200445.txt
+2025-05-30 20:04:45 - INFO - [ OK ] Archivo temporal de queries creado con 4 keywords.
+2025-05-30 20:04:45 - INFO - [INFO] Creando archivo de salida CSV vacío en: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_200445.csv
+2025-05-30 20:04:45 - INFO - [ OK ] Archivo de salida CSV vacío creado.
+2025-05-30 20:04:45 - INFO - [INFO] Ejecutando comando Docker: docker run --rm -v c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250530_200445.txt -results /app/data/raw/gmaps_data_neuquen_20250530_200445.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-05-30 20:11:29 - INFO - Agent GOSOM MVP Initialized (inicio de sesión de logger).
+2025-05-30 20:11:29 - INFO - [ OK ] Archivo de configuración 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\parameters_default.json' cargado correctamente.
+2025-05-30 20:11:29 - INFO - 
 ================================================================================
 CARGANDO PARÁMETROS GLOBALES DEL AGENTE
 ================================================================================
-2025-05-30 15:42:55 - INFO - [INFO] Lenguaje para scraping: es
-2025-05-30 15:42:55 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
-2025-05-30 15:42:55 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
-2025-05-30 15:42:55 - INFO - [INFO] Carpeta para CSVs crudos: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw
-2025-05-30 15:42:55 - INFO - [INFO] Carpeta para CSVs procesados: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\processed
-2025-05-30 15:42:55 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
-2025-05-30 15:42:55 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
-2025-05-30 15:42:55 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - [INFO] Lenguaje para scraping: es
+2025-05-30 20:11:29 - INFO - [INFO] Profundidad de búsqueda por defecto: 2
+2025-05-30 20:11:29 - INFO - [INFO] Prefijo para archivos de resultados: gmaps_data_
+2025-05-30 20:11:29 - INFO - [INFO] Carpeta para CSVs crudos: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-05-30 20:11:29 - INFO - [INFO] Carpeta para CSVs procesados: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\processed
+2025-05-30 20:11:29 - INFO - [ OK ] Carpetas de datos RAW y PROCESSED verificadas/creadas.
+2025-05-30 20:11:29 - INFO - [INFO] Coordenadas cargadas para 4 ciudades.
+2025-05-30 20:11:29 - INFO - [INFO] Celda 1 completada: Logger y configuración base listos.
+2025-05-30 20:11:29 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIONES DE UTILIDAD
 ================================================================================
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - 
 ------------------------------------------------------------
 Función para Cargar Keywords
 ------------------------------------------------------------
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - 
 ------------------------------------------------------------
 Probando Carga de Keywords
 ------------------------------------------------------------
-2025-05-30 15:42:55 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
-2025-05-30 15:42:55 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:42:55 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Contadores en Neuquen', 'Empresas de servicios en Neuquen', 'Consultorios medicos en Neuquen']
-2025-05-30 15:42:55 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
-2025-05-30 15:42:55 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
-2025-05-30 15:42:55 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - [INFO] Intentando cargar keywords para la ciudad de prueba: 'neuquen'
+2025-05-30 20:11:29 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 8 keywords.
+2025-05-30 20:11:29 - INFO - [INFO] Ejemplo de keywords para Neuquen (primeras 3 si hay): ['Ferreterias en Neuquen', 'Ferreteria industrial Neuquen', 'Casa de repuestos Neuquen']
+2025-05-30 20:11:29 - INFO - [INFO] Intentando cargar keywords para una ciudad de prueba que no existe: 'ciudad_totalmente_inventada'
+2025-05-30 20:11:29 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_ciudad_totalmente_inventada.csv' para 'ciudad_totalmente_inventada'.
+2025-05-30 20:11:29 - INFO - [INFO] Celda 2 completada: Función de carga de keywords definida y probada.
+2025-05-30 20:11:29 - INFO - 
 ================================================================================
 DEFINIENDO FUNCIÓN PARA EJECUTAR GOSOM SCRAPER VÍA DOCKER
 ================================================================================
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - 
 ================================================================================
 PROBANDO EJECUCIÓN DEL SCRAPER GOSOM PARA NEUQUÉN
 ================================================================================
-2025-05-30 15:42:55 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:42:55 - INFO - [INFO] Iniciando prueba de scraping real para: Neuquen con 4 keywords.
-2025-05-30 15:42:55 - INFO - 
+2025-05-30 20:11:29 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 8 keywords.
+2025-05-30 20:11:29 - INFO - [INFO] Iniciando prueba de scraping real para: Neuquen con 8 keywords.
+2025-05-30 20:11:29 - INFO - 
 ------------------------------------------------------------
 Iniciando scraping para ciudad: 'Neuquen'
 ------------------------------------------------------------
-2025-05-30 15:42:55 - INFO - [INFO] Usando profundidad de búsqueda: 1
-2025-05-30 15:42:55 - INFO - [INFO] Creando archivo temporal de queries en: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_154255.txt
-2025-05-30 15:42:55 - INFO - [ OK ] Archivo temporal de queries creado con 4 keywords.
-2025-05-30 15:42:55 - INFO - [INFO] Creando archivo de salida CSV vacío en: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_154255.csv
-2025-05-30 15:42:55 - INFO - [ OK ] Archivo de salida CSV vacío creado.
-2025-05-30 15:42:55 - INFO - [INFO] Ejecutando comando Docker: docker run --rm -v c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250530_154255.txt -results /app/data/raw/gmaps_data_neuquen_20250530_154255.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591
-2025-05-30 15:42:56 - ERROR - [FAIL] Error durante el scraping para 'neuquen'. Código de retorno: 127
-2025-05-30 15:42:56 - ERROR - [FAIL] Salida de error estándar del scraper (stderr) en error:
-docker: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+2025-05-30 20:11:29 - INFO - [INFO] Usando profundidad de búsqueda: 1
+2025-05-30 20:11:29 - INFO - [INFO] Creando archivo temporal de queries en: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_201129.txt
+2025-05-30 20:11:29 - INFO - [ OK ] Archivo temporal de queries creado con 8 keywords.
+2025-05-30 20:11:29 - INFO - [INFO] Creando archivo de salida CSV vacío en: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_201129.csv
+2025-05-30 20:11:29 - INFO - [ OK ] Archivo de salida CSV vacío creado.
+2025-05-30 20:11:29 - INFO - [INFO] Ejecutando comando Docker: docker run --rm -v c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250530_201129.txt -results /app/data/raw/gmaps_data_neuquen_20250530_201129.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-05-30 20:19:59 - INFO - [ OK ] Scraping completado exitosamente para 'neuquen'.
+2025-05-30 20:20:00 - INFO - [INFO] Resultados guardados en: 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_201129.csv'
+2025-05-30 20:20:00 - WARNING - [WARN] Salida de error estándar del scraper (stderr), si la hubo:
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-Run 'docker run --help' for more information
-2025-05-30 15:42:56 - INFO - [INFO] Archivo temporal de queries eliminado: c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_154255.txt
-2025-05-30 15:42:56 - ERROR - [FAIL] PRUEBA DE SCRAPING FALLÓ para Neuquen. Revisa los logs.
-2025-05-30 15:42:56 - INFO - 
+2025/05/30 23:11:31 INFO Downloading driver path=/opt
+2025/05/30 23:11:58 INFO Downloaded driver successfully
+2025/05/30 23:11:58 INFO Downloading browsers...
+2025/05/30 23:11:58 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-05-30T23:11:59.738051274Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","jobid":"e6b4a188-9213-4980-b77e-ee8ece599114","time":"2025-05-...
+2025-05-30 20:20:00 - INFO - [INFO] Archivo temporal de queries eliminado: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250530_201129.txt
+2025-05-30 20:20:00 - INFO - [ OK ] PRUEBA DE SCRAPING FINALIZADA. Archivo generado: c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_201129.csv
+2025-05-30 20:20:00 - INFO - [INFO] El archivo de resultados 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250530_201129.csv' tiene contenido (tamaño: 345335 bytes).
+2025-05-30 20:20:00 - INFO - [INFO] Celda 3 completada: Función para ejecutar GOSOM vía Docker definida y probada.
+2025-05-30 20:20:00 - INFO - 
 ================================================================================
 ORQUESTANDO TAREAS DE SCRAPING
 ================================================================================
-2025-05-30 15:42:56 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:42:56 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:42:56 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:42:56 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
-2025-05-30 15:42:56 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - INFO - [INFO] Ciudad 'Neuquen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 20:20:00 - INFO - [INFO] Ciudad 'General_roca' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 20:20:00 - INFO - [INFO] Ciudad 'Cipolletti' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 20:20:00 - INFO - [INFO] Ciudad 'Allen' añadida a la lista de procesamiento (tiene coordenadas y archivo de keywords).
+2025-05-30 20:20:00 - INFO - [INFO] Ciudades a procesar en esta ejecución: Neuquen, General_roca, Cipolletti, Allen
+2025-05-30 20:20:00 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Neuquen
 ------------------------------------------------------------
-2025-05-30 15:42:56 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 4 keywords.
-2025-05-30 15:42:56 - INFO - [INFO] Intentando scraping para Neuquen con 4 keywords y profundidad 1.
-2025-05-30 15:42:56 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-30 15:42:56 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-30 15:42:56 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - INFO - [ OK ] Keywords cargadas para 'neuquen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_neuquen.csv': 8 keywords.
+2025-05-30 20:20:00 - INFO - [INFO] Intentando scraping para Neuquen con 8 keywords y profundidad 1.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 20:20:00 - ERROR - [FAIL] Scraping para Neuquen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 20:20:00 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: General_roca
 ------------------------------------------------------------
-2025-05-30 15:42:56 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 2 keywords.
-2025-05-30 15:42:56 - INFO - [INFO] Intentando scraping para General_roca con 2 keywords y profundidad 1.
-2025-05-30 15:42:56 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
-2025-05-30 15:42:56 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
-2025-05-30 15:42:56 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - INFO - [ OK ] Keywords cargadas para 'general_roca' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_general_roca.csv': 8 keywords.
+2025-05-30 20:20:00 - INFO - [INFO] Intentando scraping para General_roca con 8 keywords y profundidad 1.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_general_roca_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 20:20:00 - ERROR - [FAIL] Scraping para General_roca falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 20:20:00 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Cipolletti
 ------------------------------------------------------------
-2025-05-30 15:42:56 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv' para 'cipolletti'.
-2025-05-30 15:42:56 - WARNING - [WARN] No se cargaron keywords para Cipolletti, se omite el scraping para esta ciudad.
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - INFO - [ OK ] Keywords cargadas para 'cipolletti' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_cipolletti.csv': 8 keywords.
+2025-05-30 20:20:00 - INFO - [INFO] Intentando scraping para Cipolletti con 8 keywords y profundidad 1.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_cipolletti_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 20:20:00 - ERROR - [FAIL] Scraping para Cipolletti falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 20:20:00 - INFO - 
 ------------------------------------------------------------
 Procesando Ciudad: Allen
 ------------------------------------------------------------
-2025-05-30 15:42:56 - WARNING - [WARN] No se encontraron keywords válidas (o el archivo está vacío) en 'c:\BAU\1 TRABAJO\REPOSITORIOS\ETL-GMAPS\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv' para 'allen'.
-2025-05-30 15:42:56 - WARNING - [WARN] No se cargaron keywords para Allen, se omite el scraping para esta ciudad.
-2025-05-30 15:42:56 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
-2025-05-30 15:42:56 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - INFO - [ OK ] Keywords cargadas para 'allen' desde 'c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\keywords_allen.csv': 8 keywords.
+2025-05-30 20:20:00 - INFO - [INFO] Intentando scraping para Allen con 8 keywords y profundidad 1.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: `run_gmaps_scraper_docker` está COMENTADO. Usando archivo dummy si existe.
+2025-05-30 20:20:00 - WARNING - [WARN] MODO SIMULACIÓN: Archivo dummy NO encontrado en c:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_allen_dummy.csv. No habrá datos para esta ciudad en simulación.
+2025-05-30 20:20:00 - ERROR - [FAIL] Scraping para Allen falló o no generó archivo (o archivo dummy no encontrado).
+2025-05-30 20:20:00 - WARNING - [WARN] No se generaron archivos CSV crudos en esta ejecución.
+2025-05-30 20:20:00 - INFO - [INFO] Celda 4 completada: Orquestación de scraping (o simulación) definida.
+2025-05-30 20:20:00 - INFO - 
 ================================================================================
 CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
 ================================================================================
-2025-05-30 15:42:56 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
-2025-05-30 15:42:56 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
-2025-05-30 15:42:56 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
-2025-05-30 15:42:56 - INFO - 
+2025-05-30 20:20:00 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 20:20:00 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 20:20:01 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 20:20:01 - INFO - 
 ================================================================================
 GUARDANDO DATOS PROCESADOS Y LIMPIOS
 ================================================================================
-2025-05-30 15:42:56 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
-2025-05-30 15:42:56 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 20:20:01 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 20:20:01 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
+2025-05-30 20:23:55 - INFO - 
+================================================================================
+CARGANDO Y TRANSFORMANDO DATOS EXTRAÍDOS
+================================================================================
+2025-05-30 20:23:55 - WARNING - [WARN] No hay archivos CSV crudos para procesar (variable 'raw_csv_files_generated' está vacía).
+2025-05-30 20:23:55 - WARNING - [WARN] No se procesaron datos de ninguna ciudad. El DataFrame final está vacío.
+2025-05-30 20:23:55 - INFO - [INFO] Celda 5 completada: Carga y transformación de datos definida.
+2025-05-30 20:23:55 - INFO - 
+================================================================================
+GUARDANDO DATOS PROCESADOS Y LIMPIOS
+================================================================================
+2025-05-30 20:23:55 - WARNING - [WARN] No hay datos procesados para guardar (DataFrame final está vacío).
+2025-05-30 20:23:55 - INFO - [INFO] Celda 6 completada: Proceso de guardado de datos procesados definido.
