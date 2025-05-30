@@ -47,3 +47,4 @@ Prompt para la Pestaña de Resumen/EDA:
 Use code with caution.
 Prompt para Mostrar Logs (versión simple post-ejecución):
 "En el área principal, después de que el scraping finalice, muestra las últimas 100 líneas (o todo el contenido si es corto) del archivo de log `agent_gmaps_mvp.log`. Puedes usar `st.text_area` o `st.code`."
+
