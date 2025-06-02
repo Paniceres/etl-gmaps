@@ -100,7 +100,7 @@ def load_keywords_from_csv_core(config_dir_path, city_key, logger_instance):
 def run_gmaps_scraper_docker_core(
     keywords_list, 
     city_name_key, 
-    depth_from_ui, # Renombrado para claridad, este es el valor de la UI
+    depth_override, # Renombrado para claridad, este es el valor de la UI
     extract_emails_flag,
     config_dir_path,       
     raw_csv_folder_path,   
@@ -130,17 +130,17 @@ def run_gmaps_scraper_docker_core(
 
     # Determinar la profundidad final a usar: Prioriza el valor de la UI si es válido
     current_depth = default_config_depth # Por defecto, usa la profundidad del archivo de config
-    if depth_from_ui is not None:
+    if depth_override  is not None:
         try:
-            parsed_depth_ui = int(depth_from_ui)
+            parsed_depth_ui = int(depth_override )
             if parsed_depth_ui > 0:
                 current_depth = parsed_depth_ui # Usa el valor de la UI si es válido
                 logger_instance.info(f"Profundidad de búsqueda tomada de la UI: {current_depth}")
             else:
-                logger_instance.warning(f"Profundidad de UI inválida ({depth_from_ui}). Usando profundidad de config: {current_depth}.")
+                logger_instance.warning(f"Profundidad de UI inválida ({depth_override }). Usando profundidad de config: {current_depth}.")
         except (ValueError, TypeError):
-            logger_instance.warning(f"Valor de profundidad de UI inválido '{depth_from_ui}'. Usando profundidad de config: {current_depth}.")
-    else: # depth_from_ui es None
+            logger_instance.warning(f"Valor de profundidad de UI inválido '{depth_override }'. Usando profundidad de config: {current_depth}.")
+    else: # depth_override  es None
         logger_instance.info(f"No se especificó profundidad en UI. Usando profundidad de config: {current_depth}")
             
     logger_instance.info(f"Profundidad final de búsqueda para GOSOM: {current_depth}")
@@ -292,7 +292,7 @@ def process_city_data_core(city_key, keywords_list, depth_from_ui, extract_email
         raw_csv_folder_path=raw_csv_folder_path,
         gmaps_coords_dict=gmaps_coords_dict,
         language_code=language_code,
-        default_config_depth=default_config_depth, # Pasa la profundidad del archivo de config
+        default_config_depth=default_config_depth, 
         results_prefix=results_prefix,
         logger_instance=logger_instance
     )

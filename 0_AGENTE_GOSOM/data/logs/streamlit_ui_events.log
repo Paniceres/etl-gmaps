@@ -1,0 +1,15 @@
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - ================================================================================
+NUEVA TAREA DE SCRAPING UI
+================================================================================
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [INFO] Ciudades: ['neuquen'], Prof: 2, Emails: True
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - ================================================================================
+PROCESANDO CIUDAD COMPLETA: NEUQUEN
+================================================================================
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - ------------------------------------------------------------
+Iniciando scraping para ciudad: 'Neuquen'
+------------------------------------------------------------
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [INFO] Profundidad de búsqueda tomada de la UI: 2
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [INFO] Profundidad final de búsqueda para GOSOM: 2
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Archivo temp de queries: config\temp_queries_neuquen_20250602_154419.txt (8 kw).
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Archivo CSV vacío creado en host: data\raw\gmaps_data_neuquen_20250602_154419.csv
+2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [INFO] Comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 2 -input /app/config/temp_queries_neuquen_20250602_154419.txt -results /app/data/raw/gmaps_data_neuquen_20250602_154419.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
