@@ -13,3 +13,33 @@ Iniciando scraping para ciudad: 'Neuquen'
 2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Archivo temp de queries: config\temp_queries_neuquen_20250602_154419.txt (8 kw).
 2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Archivo CSV vacío creado en host: data\raw\gmaps_data_neuquen_20250602_154419.csv
 2025-06-02 15:44:19 - INFO - [StreamlitAppUI:_log:54] - [INFO] Comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 2 -input /app/config/temp_queries_neuquen_20250602_154419.txt -results /app/data/raw/gmaps_data_neuquen_20250602_154419.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-02 15:59:13 - WARNING - [StreamlitAppUI:_log:54] - [WARN] GOSOM STDERR (neuquen):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/02 18:44:23 INFO Downloading driver path=/opt
+2025/06/02 18:44:46 INFO Downloaded driver successfully
+2025/06/02 18:44:46 INFO Downloading browsers...
+2025/06/02 18:44:46 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-02T18:44:48.196982166Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","jobid":"9722ad4b-9845-4257-bdbc-0b34cf545f3b","time":"2025-06-02T18:44:55.4410406Z","message":"32 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 9722ad4b-9845-4257-bdbc-0b34cf545f3b, Method: GET, URL: https://www.google.com/maps/search/Mecanicos+lubricentro+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":7244.025539,"time":"2025-06-02T18:44:55.441138012Z","message":"job finished"}
+{"level":"info","component":"scrapemate","jobid":"6cf6a4f2-b21a-4994-b30a-1c8ecd6d87b4","time":"2025-06-02T18:45:01.501568093Z","message":"32 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 6cf6a4f2-b21a-4994-b30a-1c8ecd6d87b4, Method: GET, URL: https://www.google.com/maps/search/Farmacias+en+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":6060.39286,"time":"2025-06-02T18:45:01.50161047Z","message":"job finished"}
+{"level":"info","component":"scrapemate","job":"Job{ID: f24ac5b3-ec1a-4ead-af7a-2694602e178a, Method: GET, URL: https://www.google.com/ma...
+2025-06-02 15:59:13 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Comando Docker OK para 'neuquen'.
+2025-06-02 15:59:13 - INFO - [StreamlitAppUI:_log:54] - [ OK ] CSV crudo generado: data\raw\gmaps_data_neuquen_20250602_154419.csv
+2025-06-02 15:59:14 - INFO - [StreamlitAppUI:_log:54] - [ OK ] CSV crudo cargado para neuquen: 138 filas, 32 columnas.
+2025-06-02 15:59:14 - INFO - [StreamlitAppUI:_log:54] - ------------------------------------------------------------
+Transformando datos para: Neuquen
+------------------------------------------------------------
+2025-06-02 15:59:14 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Transformación completada para Neuquen. 138 registros.
+2025-06-02 15:59:14 - INFO - [StreamlitAppUI:_log:54] - [ OK ] Proceso completo para Neuquen finalizado. 138 registros listos.
+2025-06-02 15:59:14 - INFO - [StreamlitAppUI:_log:54] - ================================================================================
+TAREA DE SCRAPING UI FINALIZADA
+================================================================================
