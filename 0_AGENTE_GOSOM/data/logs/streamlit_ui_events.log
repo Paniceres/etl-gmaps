@@ -18,3 +18,7 @@
 2025-06-03 13:11:45 - INFO - [StreamlitAppUI:core_logic:_log:63] - [INFO] Thread de scraping ha finalizado (detectado por señal o is_alive). Actualizando UI a estado 'done'.
 2025-06-03 13:17:43 - DEBUG - [StreamlitAppUI:core_logic:_log:63] - [DEBUG] Intentando cargar keywords para 'neuquen' desde directorio 'config'
 2025-06-03 13:17:43 - INFO - [StreamlitAppUI:core_logic:_log:63] - [ OK ] Cargadas 8 keywords para 'neuquen' desde 'config\keywords_neuquen.csv'
+2025-06-03 13:49:22 - DEBUG - [StreamlitAppUI:core_logic:_log:63] - [DEBUG] Intentando cargar keywords para 'neuquen' desde directorio 'config'
+2025-06-03 13:49:22 - INFO - [StreamlitAppUI:core_logic:_log:63] - [ OK ] Cargadas 8 keywords para 'neuquen' desde 'config\keywords_neuquen.csv'
+2025-06-03 13:49:24 - INFO - [StreamlitAppUI:core_logic:_log:63] - [INFO] Botón 'Iniciar Scraping' presionado. Ciudades: ['neuquen']
+2025-06-03 13:49:24 - INFO - [StreamlitAppUI:core_logic:_log:63] - [INFO] Thread de scraping ha finalizado (detectado por señal o is_alive). Actualizando UI a estado 'done'.
