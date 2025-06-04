@@ -2,7 +2,7 @@
 
 ---
 
-## 🎯 Objetivo General de la UI
+## 🎯 Objetivo General de la UI 
 
 Proporcionar una **interfaz web simple y amigable** para configurar, ejecutar y monitorear tareas de scraping de Google Maps con el **Agente GOSOM ETL**, así como visualizar, analizar y descargar los datos procesados.
 
