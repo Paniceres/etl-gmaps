@@ -83,3 +83,42 @@ Traceback (most recent call last):
   File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 132, in __getattr__
     raise AttributeError(_missing_attr_error_message(key))
 AttributeError: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2025-06-04 09:46:04 - INFO - [CoreLogicThread-12396:core_logic:_log:63] - ======================================================================
+NUEVA TAREA (THREAD: 12396)
+======================================================================
+2025-06-04 09:46:04 - INFO - [CoreLogicThread-12396:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 09:46:04 - CRITICAL - [CoreLogicThread-12396:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2025-06-04 09:46:04 - ERROR - [CoreLogicThread-12396:core_logic:critical:83] - Detalles de la excepción crítica:
+Traceback (most recent call last):
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 454, in __getitem__
+    return self._getitem(widget_id, key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 499, in _getitem
+    raise KeyError
+KeyError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 130, in __getattr__
+    return self[key]
+           ~~~~^^^^^
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 101, in __getitem__
+    return get_session_state()[key]
+           ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\safe_session_state.py", line 96, in __getitem__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 456, in __getitem__
+    raise KeyError(_missing_key_error_message(key))
+KeyError: 'st.session_state has no key "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 171, in execute_scraping_task_threaded
+    keywords_str_ui = st.session_state.selected_cities_keywords_ui.get(city_k_thread, "")
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 132, in __getattr__
+    raise AttributeError(_missing_attr_error_message(key))
+AttributeError: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
