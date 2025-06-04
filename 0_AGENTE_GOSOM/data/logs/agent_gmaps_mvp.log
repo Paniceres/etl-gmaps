@@ -1,124 +1,347 @@
-2025-06-03 13:08:49 - CRITICAL - [CoreLogicThread-9960:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: type object 'Thread' has no attribute 'get_ident'
-2025-06-03 13:08:49 - ERROR - [CoreLogicThread-9960:core_logic:critical:83] - Detalles de la excepción crítica:
-Traceback (most recent call last):
-  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 163, in execute_scraping_task_threaded
-    thread_logger_instance.section(f"Nueva Tarea (Thread: {Thread.get_ident()})")
-                                                           ^^^^^^^^^^^^^^^^
-AttributeError: type object 'Thread' has no attribute 'get_ident'
-2025-06-03 13:11:44 - INFO - [CoreLogicThread-8868:core_logic:_log:63] - ======================================================================
-NUEVA TAREA (THREAD: 8868)
+2025-06-04 10:27:24 - INFO - [CoreLogicThread-5808:core_logic:_log:63] - ======================================================================
+NUEVA TAREA (THREAD: 5808)
 ======================================================================
-2025-06-03 13:11:44 - INFO - [CoreLogicThread-8868:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 2, Emails: True
-2025-06-03 13:11:44 - CRITICAL - [CoreLogicThread-8868:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-06-03 13:11:44 - ERROR - [CoreLogicThread-8868:core_logic:critical:83] - Detalles de la excepción crítica:
-Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 454, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 499, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 130, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 101, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\safe_session_state.py", line 96, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 456, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 171, in execute_scraping_task_threaded
-    keywords_str_ui = st.session_state.selected_cities_keywords_ui.get(city_k_thread, "")
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 132, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-06-03 13:49:24 - INFO - [CoreLogicThread-22504:core_logic:_log:63] - ======================================================================
-NUEVA TAREA (THREAD: 22504)
+2025-06-04 10:27:24 - INFO - [CoreLogicThread-5808:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 10:27:24 - INFO - [CoreLogicThread-5808:core_logic:_log:63] - ======================================================================
+INICIANDO PROCESO COMPLETO PARA CIUDAD: NEUQUEN
 ======================================================================
-2025-06-03 13:49:24 - INFO - [CoreLogicThread-22504:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 2, Emails: True
-2025-06-03 13:49:24 - CRITICAL - [CoreLogicThread-22504:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-06-03 13:49:24 - ERROR - [CoreLogicThread-22504:core_logic:critical:83] - Detalles de la excepción crítica:
+2025-06-04 10:27:24 - CRITICAL - [CoreLogicThread-5808:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:27:25 - ERROR - [CoreLogicThread-5808:core_logic:critical:83] - Detalles de la excepción crítica:
 Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 454, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 499, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 130, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 101, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\safe_session_state.py", line 96, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 456, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 171, in execute_scraping_task_threaded
-    keywords_str_ui = st.session_state.selected_cities_keywords_ui.get(city_k_thread, "")
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 132, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-06-04 09:46:04 - INFO - [CoreLogicThread-12396:core_logic:_log:63] - ======================================================================
-NUEVA TAREA (THREAD: 12396)
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 182, in execute_scraping_task_threaded
+    df_transformed_city, raw_path_city = process_city_data_func_app(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\src\core_logic.py", line 339, in process_city_data_core
+    raw_csv_path = run_gmaps_scraper_docker_core(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:36:29 - INFO - [CoreLogicThread-25032:core_logic:_log:63] - ======================================================================
+NUEVA TAREA (THREAD: 25032)
 ======================================================================
-2025-06-04 09:46:04 - INFO - [CoreLogicThread-12396:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
-2025-06-04 09:46:04 - CRITICAL - [CoreLogicThread-12396:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-06-04 09:46:04 - ERROR - [CoreLogicThread-12396:core_logic:critical:83] - Detalles de la excepción crítica:
+2025-06-04 10:36:29 - INFO - [CoreLogicThread-25032:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 10:36:29 - INFO - [CoreLogicThread-25032:core_logic:_log:63] - ======================================================================
+INICIANDO PROCESO COMPLETO PARA CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 10:36:29 - CRITICAL - [CoreLogicThread-25032:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:36:29 - ERROR - [CoreLogicThread-25032:core_logic:critical:83] - Detalles de la excepción crítica:
 Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 454, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 499, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 199, in execute_scraping_task_threaded
+    df_transformed_city, raw_path_city = process_city_data_func_app(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\src\core_logic.py", line 339, in process_city_data_core
+    raw_csv_path = run_gmaps_scraper_docker_core(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:37:05 - INFO - [CoreLogicThread-16436:core_logic:_log:63] - ======================================================================
+NUEVA TAREA (THREAD: 16436)
+======================================================================
+2025-06-04 10:37:05 - INFO - [CoreLogicThread-16436:core_logic:_log:63] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 10:37:05 - INFO - [CoreLogicThread-16436:core_logic:_log:63] - ======================================================================
+INICIANDO PROCESO COMPLETO PARA CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 10:37:05 - CRITICAL - [CoreLogicThread-16436:core_logic:_log:63] - [FAIL] [CRITICAL] Error mayor en thread de scraping: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:37:05 - ERROR - [CoreLogicThread-16436:core_logic:critical:83] - Detalles de la excepción crítica:
 Traceback (most recent call last):
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 130, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 101, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\safe_session_state.py", line 96, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state.py", line 456, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 199, in execute_scraping_task_threaded
+    df_transformed_city, raw_path_city = process_city_data_func_app(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\src\core_logic.py", line 339, in process_city_data_core
+    raw_csv_path = run_gmaps_scraper_docker_core(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_gmaps_scraper_docker_core() got an unexpected keyword argument 'depth_override'
+2025-06-04 10:52:06 - INFO - [CoreLogicThread-9416:core_logic:_log:69] - ======================================================================
+NUEVA TAREA (THREAD: 9416)
+======================================================================
+2025-06-04 10:52:06 - INFO - [CoreLogicThread-9416:core_logic:_log:69] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 10:52:06 - CRITICAL - [CoreLogicThread-9416:core_logic:_log:69] - [FAIL] [CRITICAL] Error mayor en thread de scraping: process_city_data_core() got an unexpected keyword argument 'log_q_thread'
+2025-06-04 10:52:06 - ERROR - [CoreLogicThread-9416:core_logic:critical:88] - Detalles de la excepción crítica:
 Traceback (most recent call last):
-  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 171, in execute_scraping_task_threaded
-    keywords_str_ui = st.session_state.selected_cities_keywords_ui.get(city_k_thread, "")
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ogroc\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\streamlit\runtime\state\session_state_proxy.py", line 132, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_cities_keywords_ui". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 213, in execute_scraping_task_threaded
+    df_transformed_city, raw_path_city = process_city_data_func_app(
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: process_city_data_core() got an unexpected keyword argument 'log_q_thread'
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - ======================================================================
+NUEVA TAREA (THREAD: 25404)
+======================================================================
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - ======================================================================
+INICIANDO PROCESO COMPLETO PARA CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - --------------------------------------------------
+Iniciando scraping Docker para ciudad: 'Neuquen'
+--------------------------------------------------
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Usando profundidad de búsqueda de UI: 1
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Profundidad final para GOSOM: 1. Extracción de emails: True
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Creando archivo temporal de queries en: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250604_110524.txt
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Archivo temporal de queries creado con 8 keywords.
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Creando archivo de salida CSV vacío en: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_110524.csv
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Archivo de salida CSV vacío creado.
+2025-06-04 11:05:24 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Ruta absoluta host para volumen config: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config
+2025-06-04 11:05:24 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Ruta absoluta host para volumen raw_data: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-06-04 11:05:24 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Ejecutando comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250604_110524.txt -results /app/data/raw/gmaps_data_neuquen_20250604_110524.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] GOSOM STDERR (neuquen) (puede contener info/warnings):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/04 14:05:29 INFO Downloading driver path=/opt
+2025/06/04 14:06:16 INFO Downloaded driver successfully
+2025/06/04 14:06:16 INFO Downloading browsers...
+2025/06/04 14:06:16 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:06:18.229374046Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","jobid":"7852b636-fecb-474d-8c47-876d384d0ad6","time":"2025-06-04T14:06:22.589719933Z","message":"20 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 7852b636-fecb-474d-8c47-876d384d0ad6, Method: GET, URL: https://www.google.com/maps/search/Mecanicos+lubricentro+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":4359.939105,"time":"2025-06-04T14:06:22.589774028Z","message":"job finished"}
+{"level":"info","component":"scrapemate","jobid":"6ff9da9e-3e59-4be7-b0f5-587cb9e5932e","time":"2025-06-04T14:06:26.963456142Z","message":"16 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 6ff9da9e-3e59-4be7-b0f5-587cb9e5932e, Method: GET, URL: https://www.google.com/maps/search/Ferreterias+en+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":4373.623807,"time":"2025-06-04T14:06:26.963525885Z","message":"job finished"}
+{"level":"info","component":"scrapemate","job":"Job{ID: c70e6e3c-b7aa-4a22-8d30-2b8c9cd02b65, Method: GET, URL: https://www.google....
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Comando Docker para 'neuquen' finalizado con código 0.
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Archivo CSV crudo generado y NO VACÍO: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_110524.csv
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Intentando cargar CSV crudo: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_110524.csv
+2025-06-04 11:09:01 - WARNING - [CoreLogicThread-25404:core_logic:_log:69] - [WARN] Discrepancia de columnas! Esperadas: 32, Encontradas en CSV: 33. Path: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_110524.csv
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] CSV crudo cargado para neuquen: 37 filas.
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - --------------------------------------------------
+Transformando datos para: Neuquen
+--------------------------------------------------
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Convirtiendo tipos de datos numéricos...
+2025-06-04 11:09:01 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Parseando 'complete_address'...
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Error leve JSONDecode al parsear dirección para 'neuquen': 'about'
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Se recomienda concertar cita', 'enabled': True}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Cambio de aceite', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Se requiere una cita', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Servicios en el lugar', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Espacio accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Cambio de aceite', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitarios unisex', 'enabled': True}]}, {'id': 'crowd', 'name': 'Público usual', 'options': [{'name': 'Amigable con LGBTQ+', 'enabled': True}, {'name': 'Espacio seguro para personas transgénero', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Sanitarios accesibles para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Cambio de aceite', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitario', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Se recomienda concertar cita', 'enabled': True}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitarios unisex', 'enabled': True}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Cambio de aceite', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitarios unisex', 'enabled': True}]}, {'id': 'crowd', 'name': 'Público usual', 'options': [{'name': 'Amigable con LGBTQ+', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:01 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Cambio de aceite', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitario', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Se recomienda concertar cita', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitario', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitario', 'enabled': True}, {'name': 'Taller mecánico', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Se recomienda concertar cita', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': False}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': False}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Retiros en la puerta', 'enabled': True}, {'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Cheques', 'enabled': True}, {'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Espacio accesible para personas en silla de ruedas', 'enabled': True}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Sanitarios unisex', 'enabled': True}]}, {'id': 'crowd', 'name': 'Público usual', 'options': [{'name': 'Amigable con LGBTQ+', 'enabled': True}, {'name': 'Espacio seguro para personas transgénero', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}, {'id': 'parking', 'name': 'Estacionamiento', 'options': [{'name': 'Estacionamiento en el lugar', 'enabled': True}, {'name': 'Estacionamiento gratuito', 'enabled': True}, {'name': 'Estacionamiento gratuito en la calle', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': False}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Cheques', 'enabled': True}, {'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Servicio de armado', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'from_the_business', 'name': 'Información proporcionada por la empresa', 'options': [{'name': 'Se identifica como mujer empresaria', 'enabled': True}]}, {'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Retiros en la puerta', 'enabled': True}, {'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Wi-Fi', 'enabled': True}, {'name': 'Wi-Fi', 'enabled': False}]}, {'id': 'crowd', 'name': 'Público usual', 'options': [{'name': 'Amigable con LGBTQ+', 'enabled': True}, {'name': 'Espacio seguro para personas transgénero', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Cheques', 'enabled': True}, {'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Pagos móviles mediante NFC', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de débito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': False}, {'name': 'Estacionamiento accesible para personas en silla de ruedas', 'enabled': False}]}, {'id': 'offerings', 'name': 'Qué ofrece', 'options': [{'name': 'Servicio de armado', 'enabled': True}]}, {'id': 'amenities', 'name': 'Servicios', 'options': [{'name': 'Wi-Fi', 'enabled': True}, {'name': 'Wi-Fi', 'enabled': False}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Cheques', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': True}, {'name': 'Tarjetas de crédito', 'enabled': False}]}]
+2025-06-04 11:09:02 - DEBUG - [CoreLogicThread-25404:core_logic:_log:69] - [DEBUG] Dato de dirección para 'neuquen' no es un dict después de parsear: [{'id': 'from_the_business', 'name': 'Información proporcionada por la empresa', 'options': [{'name': 'Se identifica como mujer empresaria', 'enabled': True}]}, {'id': 'service_options', 'name': 'Opciones de servicio', 'options': [{'name': 'Retiros en la puerta', 'enabled': True}, {'name': 'Entrega a domicilio', 'enabled': True}, {'name': 'Retiro en tienda', 'enabled': True}, {'name': 'Compras en tienda', 'enabled': True}, {'name': 'Entrega el mismo día', 'enabled': True}]}, {'id': 'accessibility', 'name': 'Accesibilidad', 'options': [{'name': 'Entrada accesible para personas en silla de ruedas', 'enabled': True}]}, {'id': 'crowd', 'name': 'Público usual', 'options': [{'name': 'Amigable con LGBTQ+', 'enabled': True}]}, {'id': 'planning', 'name': 'Planificación', 'options': [{'name': 'Visita rápida', 'enabled': True}]}, {'id': 'payments', 'name': 'Pagos', 'options': [{'name': 'Tarjetas de crédito', 'enabled': True}]}]
+2025-06-04 11:09:02 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Componentes de dirección parseados.
+2025-06-04 11:09:02 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Columnas relevantes seleccionadas. Shape: (37, 17)
+2025-06-04 11:09:02 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [INFO] Transformación completada para Neuquen. 37 registros.
+2025-06-04 11:09:02 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - [ OK ] Proceso para neuquen finalizado. 37 registros.
+2025-06-04 11:09:02 - INFO - [CoreLogicThread-25404:core_logic:_log:69] - ======================================================================
+TAREA DE SCRAPING (THREAD) FINALIZADA
+======================================================================
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - ======================================================================
+NUEVA TAREA (THREAD: 14188)
+======================================================================
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - ======================================================================
+INICIANDO PROCESO COMPLETO PARA CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - --------------------------------------------------
+Iniciando scraping Docker para ciudad: 'Neuquen'
+--------------------------------------------------
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Usando profundidad de búsqueda de UI: 1
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Profundidad final para GOSOM: 1. Extracción de emails: True
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Creando archivo temporal de queries en: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250604_111501.txt
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [ OK ] Archivo temporal de queries creado con 8 keywords.
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Creando archivo de salida CSV vacío en: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_111501.csv
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [ OK ] Archivo de salida CSV vacío creado.
+2025-06-04 11:15:01 - DEBUG - [CoreLogicThread-14188:core_logic:_log:69] - [DEBUG] Ruta absoluta host para volumen config: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config
+2025-06-04 11:15:01 - DEBUG - [CoreLogicThread-14188:core_logic:_log:69] - [DEBUG] Ruta absoluta host para volumen raw_data: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw
+2025-06-04 11:15:01 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Ejecutando comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250604_111501.txt -results /app/data/raw/gmaps_data_neuquen_20250604_111501.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-04 11:15:58 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] GOSOM STDERR (neuquen) (puede contener info/warnings):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/04 14:15:03 INFO Downloading driver path=/opt
+2025/06/04 14:15:42 INFO Downloaded driver successfully
+2025/06/04 14:15:42 INFO Downloading browsers...
+2025/06/04 14:15:43 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:15:45.145986211Z","message":"starting scrapemate"}
+2025/06/04 14:15:50 Received signal, shutting down...
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:15:50.27346611Z","message":"received signal, shutting down"}
+{"level":"info","component":"scrapemate","jobid":"318bf1de-f49c-4d1c-96dc-af07f355bd77","time":"2025-06-04T14:15:50.693908596Z","message":"20 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 318bf1de-f49c-4d1c-96dc-af07f355bd77, Method: GET, URL: https://www.google.com/maps/search/Mecanicos+lubricentro+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":5547.809498,"time":"2025-06-04T14:15:50.694829745Z","message":"job finished"}
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:15:50.696887907Z","message":"scrapemate exited"}
+...
+2025-06-04 11:15:58 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [ OK ] Comando Docker para 'neuquen' finalizado con código 0.
+2025-06-04 11:15:58 - WARNING - [CoreLogicThread-14188:core_logic:_log:69] - [WARN] Archivo CSV crudo generado pero está VACÍO: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_111501.csv
+2025-06-04 11:15:58 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - [INFO] Intentando cargar CSV crudo: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_111501.csv
+2025-06-04 11:15:58 - WARNING - [CoreLogicThread-14188:core_logic:_log:69] - [WARN] Archivo CSV crudo C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_111501.csv está completamente vacío (0 bytes).
+2025-06-04 11:15:58 - INFO - [CoreLogicThread-14188:core_logic:_log:69] - ======================================================================
+TAREA DE SCRAPING (THREAD) FINALIZADA
+======================================================================
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - ======================================================================
+NUEVA TAREA (THREAD: 4296)
+======================================================================
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - ======================================================================
+PROCESO COMPLETO CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - --------------------------------------------------
+Iniciando scraping Docker para: 'Neuquen'
+--------------------------------------------------
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Usando profundidad de búsqueda de UI: 1
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Prof. final GOSOM: 1. Extraer Emails: True
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Creando archivo temp de queries: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250604_111639.txt
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [ OK ] Archivo temp de queries creado (8 kw).
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Creando archivo CSV vacío en host: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_111639.csv
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [ OK ] Archivo CSV vacío creado.
+2025-06-04 11:16:39 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] Comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250604_111639.txt -results /app/data/raw/gmaps_data_neuquen_20250604_111639.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-04 11:19:36 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - [INFO] GOSOM STDERR (neuquen):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/04 14:16:40 INFO Downloading driver path=/opt
+2025/06/04 14:17:13 INFO Downloaded driver successfully
+2025/06/04 14:17:13 INFO Downloading browsers...
+2025/06/04 14:17:14 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:17:15.228599499Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","jobid":"07464696-ba0f-416e-97a3-f00e3244442c","time":"2025-06-04T14:17:19.474438784Z","message":"16 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 07464696-ba0f-416e-97a3-f00e3244442c, Method: GET, URL: https://www.google.com/maps/search/Casa+de+repuestos+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":4245.753447,"time":"2025-06-04T14:17:19.474906955Z","message":"job finished"}
+{"level":"info","component":"scrapemate","jobid":"fd426a70-dafd-4599-a40b-eecc9c6e6994","time":"2025-06-04T14:17:23.420463787Z","message":"20 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: fd426a70-dafd-4599-a40b-eecc9c6e6994, Method: GET, URL: https://www.google.com/maps/search/Mecanicos+lubricentro+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":3945.54639,"time":"2025-06-04T14:17:23.420603526Z","message":"job finished"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 3bebcb5d-a0e3-490d-bf89-cb442b5855d9, Method: GET, URL: https://www.googl...
+2025-06-04 11:19:36 - ERROR - [CoreLogicThread-4296:core_logic:_log:62] - [FAIL] Comando Docker falló para 'neuquen'. Código: 1
+2025-06-04 11:19:36 - ERROR - [CoreLogicThread-4296:core_logic:_log:62] - [FAIL] Scraping para neuquen no generó CSV crudo válido: 'None'.
+2025-06-04 11:19:36 - INFO - [CoreLogicThread-4296:core_logic:_log:62] - ======================================================================
+TAREA DE SCRAPING (THREAD) FINALIZADA
+======================================================================
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - ======================================================================
+NUEVA TAREA (THREAD: 4232)
+======================================================================
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - ======================================================================
+PROCESO COMPLETO CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - --------------------------------------------------
+Iniciando scraping Docker para: 'Neuquen'
+--------------------------------------------------
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Usando profundidad de búsqueda de UI: 1
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Prof. final GOSOM: 1. Extraer Emails: True
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Creando archivo temp de queries: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250604_112459.txt
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [ OK ] Archivo temp de queries creado (8 kw).
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Creando archivo CSV vacío en host: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112459.csv
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [ OK ] Archivo CSV vacío creado.
+2025-06-04 11:24:59 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250604_112459.txt -results /app/data/raw/gmaps_data_neuquen_20250604_112459.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] GOSOM STDERR (neuquen):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/04 14:25:02 INFO Downloading driver path=/opt
+2025/06/04 14:25:19 Received signal, shutting down...
+2025/06/04 14:25:41 INFO Downloaded driver successfully
+2025/06/04 14:25:41 INFO Downloading browsers...
+2025/06/04 14:25:42 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:25:44.243885483Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:25:44.244730881Z","message":"scrapemate exited"}
+...
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [ OK ] Comando Docker OK para 'neuquen'.
+2025-06-04 11:25:47 - WARNING - [CoreLogicThread-4232:core_logic:_log:62] - [WARN] CSV crudo generado pero VACÍO: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112459.csv
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [INFO] Cargando CSV crudo: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112459.csv
+2025-06-04 11:25:47 - WARNING - [CoreLogicThread-4232:core_logic:_log:62] - [WARN] Archivo CSV crudo C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112459.csv vacío (EmptyDataError).
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - --------------------------------------------------
+Transformando datos para: Neuquen
+--------------------------------------------------
+2025-06-04 11:25:47 - WARNING - [CoreLogicThread-4232:core_logic:_log:62] - [WARN] DF crudo para Neuquen vacío/inválido. No se transforma.
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - [ OK ] Proceso para neuquen finalizado. 0 registros.
+2025-06-04 11:25:47 - INFO - [CoreLogicThread-4232:core_logic:_log:62] - ======================================================================
+TAREA DE SCRAPING (THREAD) FINALIZADA
+======================================================================
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - ======================================================================
+NUEVA TAREA (THREAD: 20932)
+======================================================================
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - ======================================================================
+PROCESO COMPLETO CIUDAD: NEUQUEN
+======================================================================
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - --------------------------------------------------
+Iniciando scraping Docker para: 'Neuquen'
+--------------------------------------------------
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Usando profundidad de búsqueda de UI: 1
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Prof. final GOSOM: 1. Extraer Emails: True
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Creando archivo temp de queries: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config\temp_queries_neuquen_20250604_112819.txt
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] Archivo temp de queries creado (8 kw).
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Creando archivo CSV vacío en host: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112819.csv
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] Archivo CSV vacío creado.
+2025-06-04 11:28:19 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Comando Docker: docker run --rm -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\config:/app/config:ro -v C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw:/app/data/raw gosom/google-maps-scraper -lang es -depth 1 -input /app/config/temp_queries_neuquen_20250604_112819.txt -results /app/data/raw/gmaps_data_neuquen_20250604_112819.csv -exit-on-inactivity 3m -geo -38.9516,-68.0591 -email
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] GOSOM STDERR (neuquen):
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🌍 Google Maps Scraper                                                       ║
+║ ⭐ If you find this project useful, please star it on GitHub: https://github ║
+║ .com/gosom/google-maps-scraper                                               ║
+║ 💖 Consider sponsoring to support development: https://github.com/sponsors/g ║
+║ osom                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+2025/06/04 14:28:20 INFO Downloading driver path=/opt
+2025/06/04 14:28:28 INFO Downloaded driver successfully
+2025/06/04 14:28:28 INFO Downloading browsers...
+2025/06/04 14:28:28 INFO Downloaded browsers successfully
+{"level":"info","component":"scrapemate","time":"2025-06-04T14:28:29.638497138Z","message":"starting scrapemate"}
+{"level":"info","component":"scrapemate","jobid":"75162752-365e-42d9-b62a-719c4be6f023","time":"2025-06-04T14:28:35.39481067Z","message":"20 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 75162752-365e-42d9-b62a-719c4be6f023, Method: GET, URL: https://www.google.com/maps/search/Mecanicos+lubricentro+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":5756.14692,"time":"2025-06-04T14:28:35.398575092Z","message":"job finished"}
+{"level":"info","component":"scrapemate","jobid":"22f7f1e9-da15-4c55-9bf8-b029891449a9","time":"2025-06-04T14:28:39.093192878Z","message":"20 places found"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 22f7f1e9-da15-4c55-9bf8-b029891449a9, Method: GET, URL: https://www.google.com/maps/search/Farmacias+en+Neuquen/@-38.9516,-68.0591,15z, UrlParams: map[hl:es]}","status":"success","duration":3694.478435,"time":"2025-06-04T14:28:39.093266372Z","message":"job finished"}
+{"level":"info","component":"scrapemate","job":"Job{ID: 7e7b0ed3-98af-4e24-b723-aab25cb484e9, Method: GET, URL: https://www.google.com/...
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] Comando Docker OK para 'neuquen'.
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] CSV crudo generado y NO VACÍO: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112819.csv
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [INFO] Cargando CSV crudo: C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\data\raw\gmaps_data_neuquen_20250604_112819.csv
+2025-06-04 11:38:44 - WARNING - [CoreLogicThread-20932:core_logic:_log:62] - [WARN] CSV tiene 33 cols, se esperaban 32. Podría haber columnas extra no mapeadas.
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] CSV crudo cargado para neuquen: 96 filas.
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - --------------------------------------------------
+Transformando datos para: Neuquen
+--------------------------------------------------
+2025-06-04 11:38:44 - DEBUG - [CoreLogicThread-20932:core_logic:_log:62] - [DEBUG] Error leve JSONDecode dir (neuquen): 'about'
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] Transformación OK para Neuquen. 96 registros.
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - [ OK ] Proceso para neuquen finalizado. 96 registros.
+2025-06-04 11:38:44 - INFO - [CoreLogicThread-20932:core_logic:_log:62] - ======================================================================
+TAREA DE SCRAPING (THREAD) FINALIZADA
+======================================================================
+2025-06-04 13:31:24-INFO [CoreLogicThread-22968:_log:58] ======================================================================
+NUEVA TAREA (THREAD: 22968)
+======================================================================
+2025-06-04 13:31:24-INFO [CoreLogicThread-22968:_log:58] [INFO] Ciudades: ['neuquen'], Prof: 1, Emails: True
+2025-06-04 13:31:24-CRITICAL [CoreLogicThread-22968:_log:58] [FAIL] [CRITICAL] Error mayor en thread: process_city_data_core() got an unexpected keyword argument 'log_q_for_streamlit_updates'
+2025-06-04 13:31:24-ERROR [CoreLogicThread-22968:critical:71] Detalles Críticos:
+Traceback (most recent call last):
+  File "C:\0 Bau\0 repos github\etl-gmaps\0_AGENTE_GOSOM\app_streamlit.py", line 159, in execute_scraping_task_threaded
+    df_transformed_city, raw_path_city = process_city_data_func_app(
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: process_city_data_core() got an unexpected keyword argument 'log_q_for_streamlit_updates'
