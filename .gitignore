@@ -3,3 +3,5 @@ vendor
 bin
 webdata/
 0_AGENTE_GOSOM/src/__pycache__/core_logic.cpython-311.pyc
+0_AGENTE_GOSOM/data/logs/agent_gmaps_mvp.log
+0_AGENTE_GOSOM/data/logs/streamlit_ui_events.log
