@@ -92,24 +92,7 @@ Mostrar los datos obtenidos y permitir su análisis y descarga.
 
 ---
 
-### 4. 📂 Gestión de Archivos de Configuración (Opcional Avanzado - Sidebar)
 
-Funciones avanzadas para usuarios técnicos.
-
--   👀 Visualizar/editar el contenido de `parameters_default.json`
--   ⬆️ Subir nuevos archivos CSV de keywords
-
----
-
-## 🧩 Lógica de Backend Reutilizada y Adaptada
-
-Se reutilizan funciones del notebook MVP y se adaptan para la interfaz:
-
--   `load_keywords_from_csv(city_name_key)` – Carga keywords iniciales
--   `run_gmaps_scraper_docker(keywords_list, city_name_key, depth_override, extract_emails_flag)` – Ejecuta scraping Dockerizado
--   `transform_gmaps_data(df_raw, city_key_origin)` – Limpieza y transformación de datos
--   Lógica de **orquestación** (celda 4 del notebook) – Iterar sobre ciudades seleccionadas
--   Lógica de **carga y combinación** (celda 5 del notebook) – Unir CSVs por ciudad en un único DataFrame
 
 ---
 
@@ -130,32 +113,10 @@ Se reutilizan funciones del notebook MVP y se adaptan para la interfaz:
 
 ---
 
-## 🧠 Consideraciones Técnicas
 
--   💡 **Manejo de Estado:** Uso de `st.session_state` para mantener datos persistentes entre interacciones
--   🔄 **Ejecución Asíncrona:** Evaluar si `run_gmaps_scraper_docker()` debe ejecutarse de forma no bloqueante para evitar que la UI se congele
--   📂 **Gestión de Rutas:** Verificar rutas relativas a archivos de log, configuración y datos
--   🛡️ **Validación de Entrada:** Asegurar que hay ciudades seleccionadas y keywords no vacías antes de iniciar el scraping
+
 
 ---
 
-## ✅ Estado Actual de la Aplicación Streamlit
-
-| Característica | Estado |
-|----------------|--------|
-| Título de la app e interfaz general | ✅ Completado |
-| Configuración de tareas y parámetros | ✅ Completado |
-| Visualización de logs post-ejecución | ✅ Completado |
-| Sección de resultados y estadísticas | ✅ Completado |
-| Pestañas de datos crudos y descarga | 🏗️ Pendiente |
-| Gestión avanzada de archivos de configuración | 🏗️ Pendiente |
-
----
-
-## 📄 Código Fuente
-
-Disponible en el repositorio del proyecto, dentro del script de la interfaz Streamlit.
-
----
-
-*¡Gracias por leer esta documentación! El Agente GOSOM ETL sigue evolucionando para ofrecer una herramienta sólida y eficiente para el proyecto Avalian.* 🌟
+*¡Gracias por leer esta documentación! 
+El Agente GOSOM ETL sigue evolucionando para ofrecer una herramienta sólida y eficiente para el proyecto Avalian.* 🌟

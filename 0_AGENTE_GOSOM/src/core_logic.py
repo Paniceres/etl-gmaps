@@ -6,6 +6,7 @@ import subprocess
 import pandas as pd
 import json
 from datetime import datetime
+import uuid
 import time # Para el bucle de Popen y conteo de CSV
 import streamlit as st # Para st.session_state.get('stop_scraping_flag')
 
@@ -254,83 +255,179 @@ def compare_and_filter_new_data_core(df_new, main_csv_filepath, logger_instance)
  Args:
  df_new (pd.DataFrame): DataFrame con los datos recién scrapeados y transformados.
  main_csv_filepath (str): Ruta completa al archivo CSV principal (scrape_jobs.csv).
- logger_instance (StyledLogger): Instancia del logger.
+        logger_instance (StyledLogger): Instancia del logger.
 
  Returns:
  pd.DataFrame: DataFrame con los nuevos datos que no son duplicados.
  """
- logger_instance.subsection("Comparando datos nuevos con CSV principal")
- if not os.path.exists(main_csv_filepath) or os.path.getsize(main_csv_filepath) == 0:
- logger_instance.info(f"CSV principal no existe o está vacío '{main_csv_filepath}'. Todos los datos nuevos son únicos.")
- return df_new
+    logger_instance.subsection("Comparando datos nuevos con CSV principal para deduplicación")
+    if not os.path.exists(main_csv_filepath) or os.path.getsize(main_csv_filepath) == 0:
+        logger_instance.info(f"CSV principal consolidado no existe o está vacío '{main_csv_filepath}'. Todos los datos nuevos ({len(df_new)} registros) son considerados únicos.")
+        return df_new
 
- try:
- df_main = pd.read_csv(main_csv_filepath, encoding='utf-8', low_memory=False)
- logger_instance.info(f"CSV principal cargado con {len(df_main)} registros para comparación.")
- combined_df = pd.concat([df_main, df_new], ignore_index=True)
- initial_rows = len(combined_df)
- combined_df.drop_duplicates(subset=['link', 'title'], keep='first', inplace=True)
- new_unique_rows = len(combined_df) - len(df_main)
+    try:
+        df_main = pd.read_csv(main_csv_filepath, encoding='utf-8', low_memory=False)
+        logger_instance.info(f"CSV principal consolidado cargado con {len(df_main)} registros para comparación.")
 
- if new_unique_rows >= 0: # Puede ser 0 si todos son duplicados
- logger_instance.success(f"Comparación OK. Se encontraron {new_unique_rows} registros nuevos únicos.")
- return combined_df.tail(len(df_new)).drop_duplicates(subset=['link', 'title'], keep=False) # Return only the new unique ones
- else: # Should not happen but as a safeguard
- logger_instance.warning(f"Número inesperado de registros nuevos únicos: {new_unique_rows}. Retornando df_new completo.")
- return df_new
+        # Realizar un merge para identificar filas en df_new que no están en df_main
+        merged_df = pd.merge(df_new, df_main[['link', 'title']], on=['link', 'title'], how='left', indicator=True)
+        df_unique_new = merged_df[merged_df['_merge'] == 'left_only'].drop('_merge', axis=1)
 
- except Exception as e:
- logger_instance.error(f"Error comparando datos con CSV principal {main_csv_filepath}: {e}", exc_info=True)
- logger_instance.warning("Retornando DataFrame nuevo sin filtrar por seguridad.")
- return df_new
+        logger_instance.success(f"Comparación completa. Se encontraron {len(df_unique_new)} registros nuevos únicos de {len(df_new)}.")
+        return df_unique_new
+
+    except Exception as e:
+        logger_instance.error(f"Error comparando datos nuevos con CSV principal {main_csv_filepath}: {e}", exc_info=True)
+        logger_instance.warning("Ocurrió un error durante la comparación. Retornando DataFrame nuevo sin filtrar por seguridad.")
+        return df_new
 
 def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
-    # ... (Tu función transform_gmaps_data_core COMPLETA de la respuesta anterior)
-    # ... (asegúrate de que extract_address_components esté definida dentro o importada)
-    # ... (y que use gmaps_column_names y logger_instance)
-    # Este es un placeholder, copia tu lógica completa aquí.
+    """
+    Transforms raw data from Google Maps scraper output into a cleaned DataFrame,
+    filtering columns based on user selection from the Streamlit UI.
+    """
+    # Local helper function (ensure this is defined within or accessible by this function)
     def extract_address_components(json_str_or_data):
         index_names = ['parsed_street', 'parsed_city_comp', 'parsed_postal_code', 'parsed_state', 'parsed_country']
         try:
             if pd.isna(json_str_or_data) or json_str_or_data == '{}': return pd.Series([pd.NA]*len(index_names), index=index_names)
             data = json.loads(str(json_str_or_data)) if not isinstance(json_str_or_data, dict) else json_str_or_data
             if isinstance(data, dict): return pd.Series([data.get('street'), data.get('city'), data.get('postal_code'), data.get('state'), data.get('country')], index=index_names)
-            return pd.Series([pd.NA]*len(index_names), index=index_names)
+            return pd.Series([pd.NA]*len(index_names), index=index_names) # Retorna NA si no es dict
         except: return pd.Series([pd.NA]*len(index_names), index=index_names)
+
 
     logger_instance.subsection(f"Transformando: {city_key_origin.capitalize()}")
     if not isinstance(df_raw, pd.DataFrame) or df_raw.empty:
         logger_instance.warning(f"DF crudo para {city_key_origin} vacío. No se transforma.")
-        return pd.DataFrame(columns=gmaps_column_names) 
+        # Retornar un DataFrame vacío con las columnas seleccionadas por el usuario si están disponibles
+        # Accedemos a st.session_state para obtener las columnas seleccionadas
+        # Usar un conjunto por defecto si st.session_state no está disponible (ej. al correr sin Streamlit)
+        # Consideramos las columnas esenciales + las parseadas de la dirección + lat/lon como un buen conjunto por defecto
+        address_parse_cols = ['parsed_street', 'parsed_city_comp', 'parsed_postal_code', 'parsed_state', 'parsed_country']
+        default_essential_plus = ['title', 'emails', 'phone', 'address', 'link', 'website', 'cid'] + address_parse_cols + ['latitude', 'longitude']
+        default_columns = list(dict.fromkeys(default_essential_plus + ['search_origin_city']))
+
+        selected_cols = st.session_state.get('selected_columns', default_columns) # Usar las columnas seleccionadas o el default
+
+        # Asegurarse de que 'search_origin_city' esté siempre incluida incluso en un DF vacío
+        if 'search_origin_city' not in selected_cols:
+             selected_cols.append('search_origin_city')
+
+        # Asegurarse de que las columnas parseadas estén incluidas si 'complete_address' está seleccionada en la UI, incluso en un DF vacío
+        if 'complete_address' in selected_cols:
+             for parsed_col in address_parse_cols:
+                 if parsed_col not in selected_cols:
+                      selected_cols.append(parsed_col)
+
+        # Limpiar duplicados
+        selected_cols = list(dict.fromkeys(selected_cols))
+
+        return pd.DataFrame(columns=selected_cols)
 
     df = df_raw.copy()
+
+    # --- Asegurar que las columnas de dirección parseada existan antes de intentar usarlas ---
+    # Esto es necesario porque extract_address_components devuelve estas columnas.
+    address_parse_cols = ['parsed_street', 'parsed_city_comp', 'parsed_postal_code', 'parsed_state', 'parsed_country']
+    for col in address_parse_cols:
+        if col not in df.columns:
+            df[col] = pd.NA
+
+
     numeric_cols = ['review_count', 'review_rating', 'latitude', 'longitude']
     for col in numeric_cols:
-        if col in df.columns: df[col] = pd.to_numeric(df[col], errors='coerce')
-        else: df[col] = pd.NA
+        if col in df.columns:
+            # Convertir a numérico, manteniendo NA para errores
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+        else:
+            # Si la columna no existe, añadirla con NA
+            df[col] = pd.NA
+
+
     if 'complete_address' in df.columns:
         address_components_df = df['complete_address'].apply(extract_address_components)
-        df = pd.concat([df, address_components_df], axis=1)
-    else:
-        for col_name in ['parsed_street', 'parsed_city_comp', 'parsed_postal_code', 'parsed_state', 'parsed_country']:
-            if col_name not in df.columns: df[col_name] = pd.NA
+        # Concatenar solo si hay datos parseados válidos
+        if not address_components_df.empty:
+             df = pd.concat([df, address_components_df], axis=1)
+    # No necesitamos un else aquí porque ya inicializamos las columnas parseadas con NA
+
+
     df['search_origin_city'] = city_key_origin.capitalize()
-    relevant_columns = [
-        'title', 'category', 'address', 'parsed_street', 'parsed_city_comp', 
-        'parsed_postal_code', 'parsed_state', 'parsed_country', 'website', 'phone', 
-        'emails', 'review_count', 'review_rating', 'latitude', 'longitude', 
-        'link', 'search_origin_city' 
-    ]
-    for col_rel in relevant_columns:
-        if col_rel not in df.columns: df[col_rel] = pd.NA
-    df_processed = df[relevant_columns].copy()
-    for col_clean in ['phone', 'emails', 'category', 'website', 'title']:
-        if col_clean in df_processed.columns:
+
+    # --- MODIFICACIÓN AQUÍ: Usar las columnas seleccionadas por el usuario ---
+    # Obtener las columnas seleccionadas de st.session_state
+    # Si no existen en session_state (ej. se corre core_logic.py directamente), usar un conjunto por defecto (las esenciales + address components + lat/lon)
+    # Consideramos las columnas esenciales + las parseadas de la dirección + lat/lon como un buen conjunto por defecto
+    default_essential_plus = ['title', 'emails', 'phone', 'address', 'link', 'website', 'cid'] + address_parse_cols + ['latitude', 'longitude']
+
+    # Asegurarse de que las columnas por defecto no tengan duplicados
+    default_columns = list(dict.fromkeys(default_essential_plus + ['search_origin_city']))
+
+
+    selected_columns_from_ui = st.session_state.get('selected_columns', default_columns) # Usar las columnas por defecto si no hay selección
+
+
+    # Asegurarse de que 'search_origin_city' esté siempre incluida si no está seleccionada explícitamente
+    if 'search_origin_city' not in selected_columns_from_ui:
+        columns_to_process = selected_columns_from_ui + ['search_origin_city']
+    else:
+        columns_to_process = selected_columns_from_ui
+
+    # Asegurarse de que las columnas parseadas de la dirección estén incluidas si 'complete_address' está seleccionada
+    if 'complete_address' in columns_to_process:
+        for parsed_col in address_parse_cols:
+            if parsed_col not in columns_to_process: # Check if already in list before appending
+                columns_to_process.append(parsed_col)
+
+    # Asegurarse de que lat y lon estén incluidas si se usa el mapa (aunque el mapa usa el df consolidado final, es seguro tenerlas aquí)
+    if 'latitude' in columns_to_process and 'longitude' not in columns_to_process:
+         columns_to_process.append('longitude')
+    if 'longitude' in columns_to_process and 'latitude' not in columns_to_process:
+         columns_to_process.append('latitude')
+
+
+    # Eliminar duplicados en la lista final de columnas a procesar
+    columns_to_process = list(dict.fromkeys(columns_to_process))
+
+
+    # Filtrar las columnas del DataFrame
+    # Asegurarse de que las columnas seleccionadas existan en el DataFrame crudo
+    existing_selected_columns = [col for col in columns_to_process if col in df.columns]
+
+    # Si no hay columnas seleccionadas existentes, retornar un DataFrame vacío con las columnas seleccionadas deseadas
+    if not existing_selected_columns:
+        logger_instance.warning(f"Ninguna de las columnas seleccionadas ({', '.join(columns_to_process)}) existe en los datos crudos para {city_key_origin}. Retornando DataFrame vacío con columnas seleccionadas.")
+        return pd.DataFrame(columns=columns_to_process)
+
+
+    df_processed = df[existing_selected_columns].copy()
+    # --- FIN MODIFICACIÓN ---
+
+
+    # --- Resto del código de limpieza y procesamiento de columnas ---
+    # Asegurarse de que estas columnas existan antes de intentar limpiarlas y que estén en existing_selected_columns
+    cols_to_clean = ['phone', 'emails', 'category', 'website', 'title']
+    for col_clean in cols_to_clean:
+        if col_clean in df_processed.columns and col_clean in existing_selected_columns: # Doble verificación
             df_processed[col_clean] = df_processed[col_clean].astype(str).str.strip()
             df_processed.loc[df_processed[col_clean].isin(['nan', 'None', '', '<NA>']), col_clean] = pd.NA
-            if col_clean == 'phone': df_processed[col_clean] = df_processed[col_clean].str.replace(r'[^\d\+\s\(\)-]', '', regex=True)
-            if col_clean == 'category': df_processed[col_clean] = df_processed[col_clean].str.split(',').str[0].str.strip()
-    logger_instance.success(f"Transformación OK para {city_key_origin}. {len(df_processed)} regs.")
+            if col_clean == 'phone':
+                # Aplicar limpieza de teléfono solo si la columna existe después del filtrado
+                df_processed[col_clean] = df_processed[col_clean].astype(str).str.replace(r'[^\d\+\s\(\)-]', '', regex=True)
+            if col_clean == 'category':
+                 # Asegurarse de que la columna es tipo string antes de dividir
+                df_processed[col_clean] = df_processed[col_clean].astype(str).str.split(',').str[0].str.strip()
+
+
+    # Asegurarse de que las columnas parseadas de la dirección también se limpien si están presentes y seleccionadas
+    for parsed_col in address_parse_cols:
+        if parsed_col in df_processed.columns and parsed_col in existing_selected_columns:
+             df_processed[parsed_col] = df_processed[parsed_col].astype(str).str.strip()
+             df_processed.loc[df_processed[parsed_col].isin(['nan', 'None', '', '<NA>']), parsed_col] = pd.NA
+
+
+    logger_instance.success(f"Transformación OK para {city_key_origin}. {len(df_processed)} regs con {len(df_processed.columns)} columnas seleccionadas/existentes.")
     return df_processed
 
 def process_city_data_core(
@@ -351,7 +448,7 @@ def process_city_data_core(
     if not all([config_dir_path, raw_csv_folder_path, gmaps_coords_dict is not None, language_code, results_prefix]):
         logger_instance.critical("Faltan params config en process_city_data_core.")
         return pd.DataFrame(columns=gmaps_column_names), None 
-
+    
     raw_csv_path = run_gmaps_scraper_docker_core(
         keywords_list=keywords_list, city_name_key=city_key,
         depth_from_ui=depth_from_ui, extract_emails_flag=extract_emails_flag,
@@ -359,10 +456,11 @@ def process_city_data_core(
         gmaps_coords_dict=gmaps_coords_dict, language_code=language_code,
         default_config_depth_val=default_config_depth, 
         results_prefix=results_prefix, logger_instance=logger_instance,
-        log_q_for_streamlit_updates=log_q_streamlit # PASAR LA COLA
+ log_q_streamlit=log_q_streamlit
     )
+    
     if not raw_csv_path or not os.path.exists(raw_csv_path):
-        logger_instance.error(f"Scraping para {city_key} no generó CSV: '{raw_csv_path}'.")
+ logger_instance.error(f"Scraping para {city_key} no generó CSV o archivo no existe: '{raw_csv_path}'.")
         return pd.DataFrame(columns=gmaps_column_names), raw_csv_path
 
     df_raw = pd.DataFrame(columns=gmaps_column_names) 
@@ -386,4 +484,32 @@ def process_city_data_core(
         
     df_transformado = transform_gmaps_data_core(df_raw, city_key, logger_instance)
     logger_instance.success(f"Proceso para {city_key} finalizado. {len(df_transformado)} registros.")
+    
+    # --- Registro de Job de Scraping ---
+    job_log_filepath = paths_config_dict.get('JOB_LOG_FILE') # Obtener la ruta del log de jobs
+    if job_log_filepath:
+        try:
+            job_id = str(uuid.uuid4()) # ID único por job
+            now = datetime.now()
+            fecha = now.strftime("%Y-%m-%d")
+            hora = now.strftime("%H:%M:%S")
+            ciudades_str = city_key # Registrar la ciudad procesada en este job
+            keywords_str = "; ".join(keywords_list) # Separar palabras clave por ;
+            depth_val = depth_from_ui if depth_from_ui is not None else default_config_depth
+            filas_extraidas = len(df_transformado)
+            
+            # Determinar si hubo un error significativo
+            error_msg = ""
+            if df_transformado.empty and os.path.exists(raw_csv_path) and os.path.getsize(raw_csv_path) > 0:
+                 error_msg = "CSV crudo con errores de formato o sin datos válidos"
+            elif not os.path.exists(raw_csv_path) or (os.path.exists(raw_csv_path) and os.path.getsize(raw_csv_path) == 0):
+                 error_msg = "No se generó CSV crudo o está vacío"
+            
+            log_entry = f'"{job_id}","{fecha}","{hora}","{ciudades_str}","{keywords_str}",{depth_val},{filas_extraidas},"{error_msg}"'
+            
+            with open(job_log_filepath, 'a', encoding='utf-8') as f:
+                f.write(log_entry + '\n')
+            logger_instance.success(f"Job registrado en: {job_log_filepath}")
+        except Exception as e:
+            logger_instance.error(f"Error registrando job de scraping: {e}", exc_info=True)
     return df_transformado, raw_csv_path
