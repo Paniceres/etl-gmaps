@@ -490,12 +490,13 @@ def execute_scraping_task_threaded(
     core_logic_log_file_path_app,
     selected_cities_list_thread, keywords_per_city_thread_dict,
     depth_ui_thread, emails_ui_thread,
-    cfg_params_thread, paths_cfg_thread, log_q_thread):
+    cfg_params_thread, paths_cfg_thread,
+    log_q_thread):
     """Ejecuta la tarea de scraping en un hilo separado."""
     current_thread_id = threading.get_ident()
     log_path_for_thread_core = core_logic_log_file_path_app
 
-    # Limpiar logs de la cola al inicio de cada ejecución.
+    # Limpiar logs de la cola al inicio de cada ejecución del hilo.
     while not log_q_thread.empty():
         try:
             log_q_thread.get_nowait()
@@ -542,14 +543,16 @@ def execute_scraping_task_threaded(
             # process_city_data_core incluye run_gmaps_scraper_docker_core.
             # Devuelve la ruta al CSV crudo si tiene éxito.
             df_transformed_city, raw_path_city = process_city_data_func_app(
-                log_q_streamlit=log_q_thread, # Pasar la cola a core_logic.
+
+                log_q_streamlit=log_q_thread,  # Pasar la cola a core_logic.
                 city_key=city_k_thread,
                 keywords_list=keywords_list_for_city,
                 depth_from_ui=depth_ui_thread,
                 extract_emails_flag=emails_ui_thread,
                 config_params_dict=cfg_params_thread,
-                paths_config_dict=paths_cfg_thread,
-                logger_instance=thread_core_logger, # Pasar logger a core_logic.
+                paths_config_dict=paths_cfg_thread, # Pasar logger a core_logic.
+                logger_instance=thread_core_logger,
+ fast_mode_enabled=st.session_state.get('fast_mode', False), # Obtener y pasar el estado del fast mode.
             )
 
             # --- Validación: Después de la Generación y Transformación del CSV Crudo ---
@@ -642,8 +645,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- Barra Lateral (Sidebar) ---
 with st.sidebar:
-    st.image(os.path.join(APP_ROOT_DIR, "logo.png"), width=100)
-    st.header("Agente GOSOM ETL")
+    st.image(os.path.join(APP_ROOT_DIR, "main-logo-black.jpeg"), width=100)
     st.markdown("---")
 
     # --- Gestión de Etapas ---
@@ -719,6 +721,13 @@ with st.sidebar:
         st.session_state.last_extract_emails = emails_ui_val
 
     st.markdown("---")
+    with st.expander("⚡ Modos Especiales", expanded=False):
+        fast_mode_ui_val = st.checkbox(
+            '⚡️ Modo Rápido (Fast Mode)',
+            value=st.session_state.get('fast_mode', False),
+ disabled=scraping_state['scraping_in_progress'], key="cb_fast_mode_sidebar",
+ help="Activa el 'Fast Mode' de GOSOM (puede funcionar mejor en algunos casos, pero podría ser menos estable)."
+ )
     st.subheader("🚀 Controles de Ejecución")
     col_btn_start_s, col_btn_stop_s = st.columns(2)
 
@@ -758,7 +767,7 @@ with st.sidebar:
                     CORE_LOGIC_LOG_FILE_PATH_APP,
                     selected_cities_keys_ui, keywords_for_thread_dict,
                     depth_ui_val, emails_ui_val, config_params_app, get_paths_config_dict_app(),
-                    st.session_state.log_messages_queue
+ st.session_state.log_messages_queue
                 ))
                 st.session_state.scraping_thread = thread
                 thread.start()

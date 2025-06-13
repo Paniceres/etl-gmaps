@@ -107,8 +107,8 @@ def load_keywords_from_csv_core(config_dir_path, city_key, logger_instance):
 def run_gmaps_scraper_docker_core(
     *, keywords_list, city_name_key, depth_from_ui, extract_emails_flag,
     config_dir_path, raw_csv_folder_path, gmaps_coords_dict, language_code, 
-    default_config_depth_val, results_prefix, logger_instance, log_q_streamlit
-):
+ default_config_depth_val, results_prefix, logger_instance, log_q_streamlit, fast_mode_enabled
+): # Added fast_mode_enabled parameter
     logger_instance.subsection(f"Scraping Docker: '{city_name_key.capitalize()}'")
     if not keywords_list: logger_instance.warning(f"No kw para '{city_name_key}'."); return None
     
@@ -152,7 +152,9 @@ def run_gmaps_scraper_docker_core(
             "-input", tmp_kw_fp_cont, "-results", raw_fp_cont,
             "-exit-on-inactivity", "2m", "-geo", f"{lat},{lon}" # Reducido exit-on-inactivity
         ]
-        if extract_emails_flag: docker_cmd_list.append("-email")
+
+        if fast_mode_enabled:
+            docker_cmd_list.append("-fast-mode")
         
         cmd_str_for_log = ' '.join(docker_cmd_list)
         logger_instance.info(f"Ejecutando: {cmd_str_for_log}")
@@ -168,6 +170,11 @@ def run_gmaps_scraper_docker_core(
             if clean_line:
                 log_q_streamlit.put(f"GOSOM_LOG:{clean_line}")
                 # logger_instance.debug(f"GOSOM ({city_name_key}): {clean_line}") # Redundante con la cola
+                # Explicitly log potential error messages from Docker output
+                lower_line = clean_line.lower()
+                if "error" in lower_line or "fail" in lower_line or "exception" in lower_line:
+                    logger_instance.error(f"GOSOM Error Line ({city_name_key}): {clean_line}")
+
             
             if st.session_state.get('stop_scraping_flag', False):
                 logger_instance.warning(f"DETENER para {city_name_key}. Terminando Docker...")
@@ -178,7 +185,7 @@ def run_gmaps_scraper_docker_core(
                 log_q_streamlit.put(f"INFO:Docker para {city_name_key} detenido por usuario.")
                 return None
             
-            if time.time() - last_row_count_update_time > 2: # Chequear cada 2 segundos
+            if time.time() - last_row_count_update_time > 5: # Chequear cada 5 segundos
                 if os.path.exists(raw_fp_host):
                     try:
                         with open(raw_fp_host, 'r', encoding='utf-8', errors='ignore') as f_rc:
@@ -248,18 +255,18 @@ def validate_csv_integrity_core(csv_filepath, required_columns, logger_instance)
     except Exception as e: logger_instance.error(f"Error validando integridad CSV {csv_filepath}: {e}", exc_info=True); return False
 
 def compare_and_filter_new_data_core(df_new, main_csv_filepath, logger_instance):
- """
- Compara nuevos datos con el CSV principal para filtrar duplicados.
- Duplicados se definen por la combinación de 'link' y 'title'.
+    """
+    Compara nuevos datos con el CSV principal para filtrar duplicados.
+    Duplicados se definen por la combinación de 'link' y 'title'.
 
- Args:
- df_new (pd.DataFrame): DataFrame con los datos recién scrapeados y transformados.
- main_csv_filepath (str): Ruta completa al archivo CSV principal (scrape_jobs.csv).
+    Args:
+        df_new (pd.DataFrame): DataFrame con los datos recién scrapeados y transformados.
+        main_csv_filepath (str): Ruta completa al archivo CSV principal (scrape_jobs.csv).
         logger_instance (StyledLogger): Instancia del logger.
 
- Returns:
- pd.DataFrame: DataFrame con los nuevos datos que no son duplicados.
- """
+    Returns:
+        pd.DataFrame: DataFrame con los nuevos datos que no son duplicados.
+    """
     logger_instance.subsection("Comparando datos nuevos con CSV principal para deduplicación")
     if not os.path.exists(main_csv_filepath) or os.path.getsize(main_csv_filepath) == 0:
         logger_instance.info(f"CSV principal consolidado no existe o está vacío '{main_csv_filepath}'. Todos los datos nuevos ({len(df_new)} registros) son considerados únicos.")
@@ -268,7 +275,7 @@ def compare_and_filter_new_data_core(df_new, main_csv_filepath, logger_instance)
     try:
         df_main = pd.read_csv(main_csv_filepath, encoding='utf-8', low_memory=False)
         logger_instance.info(f"CSV principal consolidado cargado con {len(df_main)} registros para comparación.")
-
+ 
         # Realizar un merge para identificar filas en df_new que no están en df_main
         merged_df = pd.merge(df_new, df_main[['link', 'title']], on=['link', 'title'], how='left', indicator=True)
         df_unique_new = merged_df[merged_df['_merge'] == 'left_only'].drop('_merge', axis=1)
@@ -355,40 +362,17 @@ def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
 
     df['search_origin_city'] = city_key_origin.capitalize()
 
-    # --- MODIFICACIÓN AQUÍ: Usar las columnas seleccionadas por el usuario ---
-    # Obtener las columnas seleccionadas de st.session_state
-    # Si no existen en session_state (ej. se corre core_logic.py directamente), usar un conjunto por defecto (las esenciales + address components + lat/lon)
-    # Consideramos las columnas esenciales + las parseadas de la dirección + lat/lon como un buen conjunto por defecto
-    default_essential_plus = ['title', 'emails', 'phone', 'address', 'link', 'website', 'cid'] + address_parse_cols + ['latitude', 'longitude']
+    # --- Define las columnas a procesar ---
+    # Siempre incluir todas las columnas definidas en gmaps_column_names
+    # Siempre incluir las columnas parseadas de la dirección
+    # Siempre incluir 'search_origin_city'
+    columns_to_process = list(gmaps_column_names) + address_parse_cols + ['search_origin_city']
 
-    # Asegurarse de que las columnas por defecto no tengan duplicados
-    default_columns = list(dict.fromkeys(default_essential_plus + ['search_origin_city']))
-
-
-    selected_columns_from_ui = st.session_state.get('selected_columns', default_columns) # Usar las columnas por defecto si no hay selección
-
-
-    # Asegurarse de que 'search_origin_city' esté siempre incluida si no está seleccionada explícitamente
-    if 'search_origin_city' not in selected_columns_from_ui:
-        columns_to_process = selected_columns_from_ui + ['search_origin_city']
-    else:
-        columns_to_process = selected_columns_from_ui
-
-    # Asegurarse de que las columnas parseadas de la dirección estén incluidas si 'complete_address' está seleccionada
-    if 'complete_address' in columns_to_process:
-        for parsed_col in address_parse_cols:
-            if parsed_col not in columns_to_process: # Check if already in list before appending
-                columns_to_process.append(parsed_col)
-
-    # Asegurarse de que lat y lon estén incluidas si se usa el mapa (aunque el mapa usa el df consolidado final, es seguro tenerlas aquí)
-    if 'latitude' in columns_to_process and 'longitude' not in columns_to_process:
-         columns_to_process.append('longitude')
-    if 'longitude' in columns_to_process and 'latitude' not in columns_to_process:
-         columns_to_process.append('latitude')
-
-
-    # Eliminar duplicados en la lista final de columnas a procesar
+    # Eliminar duplicados (por si alguna columna parseada o search_origin_city ya estaba en gmaps_column_names)
     columns_to_process = list(dict.fromkeys(columns_to_process))
+
+    # Nota: La selección de columnas de la UI (`st.session_state.get('selected_columns')`)
+    # se maneja en la función consolidate_and_save_results_core. Aquí transformamos todas las columnas posibles.
 
 
     # Filtrar las columnas del DataFrame
@@ -433,7 +417,7 @@ def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
 def process_city_data_core(
     *, city_key, keywords_list, depth_from_ui, extract_emails_flag, 
     config_params_dict, paths_config_dict, logger_instance, log_q_streamlit
-):
+    , fast_mode_enabled):
     # ... (Tu función process_city_data_core COMPLETA de la respuesta anterior,
     #      asegurándote que llame a run_gmaps_scraper_docker_core con el argumento
     #      log_q_for_streamlit_updates=log_q_streamlit)
@@ -455,13 +439,13 @@ def process_city_data_core(
         config_dir_path=config_dir_path, raw_csv_folder_path=raw_csv_folder_path,
         gmaps_coords_dict=gmaps_coords_dict, language_code=language_code,
         default_config_depth_val=default_config_depth, 
-        results_prefix=results_prefix, logger_instance=logger_instance,
+ results_prefix=results_prefix, logger_instance=logger_instance, fast_mode_enabled=fast_mode_enabled,
  log_q_streamlit=log_q_streamlit
     )
     
     if not raw_csv_path or not os.path.exists(raw_csv_path):
- logger_instance.error(f"Scraping para {city_key} no generó CSV o archivo no existe: '{raw_csv_path}'.")
-        return pd.DataFrame(columns=gmaps_column_names), raw_csv_path
+        logger_instance.error(f"Scraping para {city_key} no generó CSV o archivo no existe: '{raw_csv_path}'.")
+        return pd.DataFrame(columns=gmaps_column_names), None
 
     df_raw = pd.DataFrame(columns=gmaps_column_names) 
     try:
