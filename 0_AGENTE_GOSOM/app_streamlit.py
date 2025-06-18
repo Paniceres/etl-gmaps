@@ -1,3 +1,8 @@
+# Este agente GOSOM MVP (Producto Mínimo Viable) se encarga
+# exclusivamente de la configuración y ejecución del scraping,
+# guardando los resultados como CSVs crudos en /data/raw/.
+# La consolidación, deduplicación, generación de chunks y cualquier
+# otro procesamiento posterior son responsabilidad de la Central ETL.
 import streamlit as st
 import json
 import os
@@ -139,7 +144,7 @@ process_city_data_func_app = dummy_process_city_func
 # Intenta importar la lógica principal; si falla, usa las funciones dummy.
 try:
     # Importar la función de validación.
-    from core_logic import StyledLogger, gmaps_column_names, load_keywords_from_csv_core, process_city_data_core, compare_and_filter_new_data_core, validate_csv_integrity_core
+    from core_logic import StyledLogger, gmaps_column_names, load_keywords_from_csv_core, process_city_data_core
     StyledLogger_cls_app = StyledLogger
     gmaps_column_names_list_app = gmaps_column_names
     load_keywords_from_csv_func_app = load_keywords_from_csv_core
@@ -248,212 +253,6 @@ def generate_clean_city_csvs(processed_city_data, output_dir, logger_instance):
                 logger_instance.success(f"CSV limpio para {city.capitalize()} guardado en {clean_file_path}")
             except Exception as e_save:
                 logger_instance.error(f"Error al guardar el CSV limpio para {city.capitalize()} en {clean_file_path}: {e_save}", exc_info=True)
-
-        elif df is None:
-            logger_instance.warning(f"No hay DataFrame procesado para {city}. Saltando generación de CSV limpio.")
-        elif df.empty:
-            # Usar nivel info ya que no es un error.
-            logger_instance.info(f"DataFrame vacío para {city}. No se generó CSV limpio.")
-
-def consolidate_scraped_data(new_data_df: pd.DataFrame, logger_instance=DummyLogger()) -> bool:
-    """
-    Consolida los nuevos datos scrapeados (new_data_df) con el CSV madre consolidado existente.
-    Carga el CSV madre, fusiona, elimina duplicados basados en 'link' y 'title',
-    y guarda el DataFrame actualizado de nuevo en la ruta del CSV madre.
-    Inicializa un DataFrame vacío si el CSV madre no existe o está vacío.
-
-    Args:
-        new_data_df: DataFrame que contiene los nuevos datos scrapeados.
-        logger_instance: Instancia de logger para registrar mensajes.
-
-    Returns:
-        True si la consolidación fue exitosa, False en caso contrario.
-    """
-    # Usar la ruta global consolidada.
-    mother_csv_path = CONSOLIDATED_MOTHER_CSV_PATH_APP
-    logger_instance.section("Consolidando Nuevos Datos con CSV Madre")
-
-    if new_data_df is None or new_data_df.empty:
-        logger_instance.warning("No hay nuevos datos para consolidar.")
-        return True # Se considera exitoso ya que no había nada que añadir.
-
-    try:
-        # Intentar cargar el CSV madre existente.
-        df_mother = pd.DataFrame()
-        try:
-            if os.path.exists(mother_csv_path) and os.stat(mother_csv_path).st_size > 0:
-                # Leer como string para evitar problemas de tipo.
-                df_mother = pd.read_csv(mother_csv_path, dtype=str)
-                logger_instance.info(f"CSV Madre existente cargado desde {mother_csv_path} ({len(df_mother)} filas).")
-            else:
-                # Inicializar DataFrame vacío con columnas que *serán* necesarias + las de los nuevos datos.
-                # Asegurar que las columnas esenciales para la consolidación/seguimiento estén presentes.
-                initial_cols = ['link', 'title', 'emails', 'phone', 'search_origin_city', 'fecha_asignacion', 'id_chunk', 'estado_asignacion', 'asignado_a', 'lat', 'lon']
-                # Añadir cualquier columna de new_data_df que no esté en initial_cols.
-                all_cols = list(set(initial_cols + list(new_data_df.columns)))
-                df_mother = pd.DataFrame(columns=all_cols)
-                logger_instance.info("CSV Madre no encontrado o vacío. Creando nuevo CSV Madre.")
-        except (FileNotFoundError, pd.errors.EmptyDataError):
-            # Este caso debería ser manejado por el if/else exterior, pero es una medida defensiva.
-            # Empezar con las columnas de los nuevos datos si hay un problema con el archivo.
-            df_mother = pd.DataFrame(columns=new_data_df.columns)
-            logger_instance.warning(f"Error al cargar CSV Madre o estaba vacío. Iniciando con DataFrame vacío. ({mother_csv_path})")
-        except Exception as e_load:
-            logger_instance.error(f"Error inesperado al cargar CSV Madre: {e_load}", exc_info=True)
-            return False
-
-        # Usar la función de deduplicación refinada de core_logic.
-        df_unique_new_data = compare_and_filter_new_data_core(new_data_df, mother_csv_path, logger_instance)
-
-        if df_unique_new_data is None or df_unique_new_data.empty:
-            logger_instance.info("No se encontraron nuevos registros únicos para añadir al CSV Madre.")
-            return True # Se considera exitoso ya que no se encontraron datos únicos.
-
-        num_new_unique = len(df_unique_new_data)
-        logger_instance.info(f"Se encontraron {num_new_unique} nuevos registros únicos para añadir.")
-
-        # Añadir solo los nuevos datos únicos al DataFrame madre.
-        df_consolidated = pd.concat([df_mother, df_unique_new_data], ignore_index=True).reset_index(drop=True)
-
-        # Asegurar que las columnas de asignación existan e inicializar para las nuevas filas.
-        if 'estado_asignacion' not in df_consolidated.columns:
-            df_consolidated['estado_asignacion'] = 'Pendiente'
-        if 'asignado_a' not in df_consolidated.columns:
-            df_consolidated['asignado_a'] = '' # O pd.NA o None.
-
-        df_consolidated.to_csv(mother_csv_path, index=False)
-        logger_instance.success(f"CSV Madre actualizado en {mother_csv_path}. Se añadieron {num_new_unique} nuevos registros. Total: {len(df_consolidated)} filas.")
-        return True # Indicar éxito.
-    except (IOError, OSError) as e_io:
-        logger_instance.critical(f"Error de E/S al leer o escribir el CSV Madre en {mother_csv_path}: {e_io}", exc_info=True)
-        return False # Indicar fallo.
-    except Exception as e_general:
-        logger_instance.critical(f"Error inesperado durante la consolidación del CSV Madre en {mother_csv_path}: {e_general}", exc_info=True)
-        return False # Indicar fallo.
-
-
-def generate_lead_chunks(output_dir, chunk_size=30, logger_instance=DummyLogger()):
-    """
-    Genera chunks de leads (nombre, mail, telefono) desde el CSV madre,
-    hace seguimiento de los leads asignados y guarda los chunks como CSVs separados por ciudad.
-    """
-    logger_instance.section("Generando Chunks de Leads para Vendedores")
-    generated_chunk_files = {} # Inicializar aquí para devolver incluso en una salida temprana.
-
-    mother_csv_path = CONSOLIDATED_MOTHER_CSV_PATH_APP # Usar la ruta global consolidada.
-
-    if not os.path.exists(mother_csv_path) or os.stat(mother_csv_path).st_size == 0:
-        logger_instance.warning(f"CSV Madre no encontrado o vacío en {mother_csv_path}. No se pueden generar chunks.")
-        return generated_chunk_files
-
-    if not os.path.exists(output_dir):
-        logger_instance.warning(f"Directorio de salida para chunks no encontrado: {output_dir}. Intentando crearlo.")
-        try:
-            os.makedirs(output_dir)
-        except OSError as e:
-            # Comprobar si el error se debe a que el directorio ya existe por otro proceso/hilo.
-            if not os.path.exists(output_dir): # Doble comprobación por si aún no existe.
-                logger_instance.critical(f"No se pudo crear el directorio de salida {output_dir}: {e}", exc_info=True)
-                return generated_chunk_files
-
-    try:
-        df_mother = pd.read_csv(mother_csv_path)
-        logger_instance.info(f"CSV Madre cargado desde {mother_csv_path} ({len(df_mother)} filas).")
-    except Exception as e:
-        logger_instance.critical(f"Error al cargar CSV Madre desde {mother_csv_path}: {e}", exc_info=True)
-        return generated_chunk_files
-
-    # Asegurar que las columnas de seguimiento y requeridas existan en el DataFrame cargado.
-    for col in ['fecha_asignacion', 'id_chunk']:
-        if col not in df_mother.columns:
-            df_mother[col] = pd.NA # Inicializar con NA si falta.
-
-    # 'link' es necesario para la comprobación implícita de deduplicación a través de la lectura del CSV madre.
-    required_cols_for_chunking = ['city', 'title', 'emails', 'link']
-    if not all(col in df_mother.columns for col in required_cols_for_chunking):
-        missing_cols = [col for col in required_cols_for_chunking if col not in df_mother.columns]
-        logger_instance.critical(f"Columnas requeridas ({', '.join(missing_cols)}) no encontradas en el CSV Madre. No se pueden generar chunks.")
-        return generated_chunk_files
-
-    # Comprobar la integridad básica de los datos: title y emails no deben faltar por completo en las filas relevantes.
-    if df_mother[['title', 'emails']].dropna(how='all').empty and len(df_mother) > 0:
-        logger_instance.warning("El CSV Madre parece estar vacío o las columnas 'title' y 'emails' están vacías en todas las filas.")
-
-    # Filtrar leads no asignados. Usar .isna() para pd.NA y .copy().
-    df_unassigned = df_mother[df_mother['fecha_asignacion'].isna()].copy()
-    logger_instance.info(f"{len(df_unassigned)} leads sin asignar encontrados.")
-
-    if df_unassigned.empty:
-        logger_instance.info("No hay leads sin asignar para generar chunks.")
-        return {} # Devolver un diccionario vacío.
-
-    # Obtener ciudades únicas de los leads no asignados.
-    cities_with_unassigned = df_unassigned['city'].unique()
-    logger_instance.info(f"Ciudades con leads sin asignar: {list(cities_with_unassigned)}")
-
-    updated_indices = [] # Para rastrear qué filas del CSV madre necesitan actualizarse.
-    generated_chunk_files = {} # Para almacenar ciudad -> lista de archivos de chunk.
-
-    for city in cities_with_unassigned:
-        df_city_unassigned = df_unassigned[df_unassigned['city'] == city].copy()
-        if df_city_unassigned.empty:
-            continue # No debería ocurrir, pero es una comprobación segura.
-
-        num_chunks_city = (len(df_city_unassigned) + chunk_size - 1) // chunk_size
-        logger_instance.info(f"Generando {num_chunks_city} chunks de {chunk_size} leads para {city.capitalize()}...")
-
-        for i in range(0, len(df_city_unassigned), chunk_size):
-            df_chunk = df_city_unassigned.iloc[i:i + chunk_size].copy()
-
-            if df_chunk.empty:
-                logger_instance.warning(f"Chunk vacío generado para {city} en el índice {i}. Omitiendo.")
-                continue
-
-            # Seleccionar solo las columnas requeridas para el CSV del chunk.
-            chunk_cols = ['title', 'emails']
-            if 'phone' in df_chunk.columns:
-                chunk_cols.append('phone')
-            else:
-                logger_instance.warning(f"Columna 'phone' no encontrada en chunk para {city}. Generando sin telefono.")
-
-            df_chunk_export = df_chunk[chunk_cols]
-            # Renombrar columnas para el CSV del chunk.
-            rename_map = {'title': 'nombre del local', 'emails': 'mail'}
-            if 'phone' in chunk_cols:
-                rename_map['phone'] = 'telefono'
-            df_chunk_export = df_chunk_export.rename(columns=rename_map)
-
-            # Generar un ID de chunk único (ej., Ciudad-Timestamp-NumChunk).
-            timestamp_str = datetime.now().strftime("%Y%m%d%H%M%S")
-            chunk_id = f"{city.replace(' ', '_')}-{timestamp_str}-Chunk{i//chunk_size + 1}"
-
-            chunk_file_path = os.path.join(output_dir, f'{chunk_id}.csv')
-            try:
-                # Guardar el chunk renombrado.
-                df_chunk_export.to_csv(chunk_file_path, index=False)
-                logger_instance.success(f"Chunk {chunk_id} guardado en {chunk_file_path} ({len(df_chunk_export)} leads).")
-            except Exception as e_save:
-                logger_instance.error(f"Error al guardar chunk {chunk_id} en {chunk_file_path}: {e_save}", exc_info=True)
-                continue # Opcionalmente, omitir la actualización del CSV madre si falla el guardado.
-
-            if city not in generated_chunk_files:
-                generated_chunk_files[city] = []
-            generated_chunk_files[city].append(os.path.basename(chunk_file_path))
-
-            # Actualizar el CSV madre: marcar los leads como asignados.
-            # Obtener los índices originales del CSV madre para los leads en este chunk.
-            original_indices = df_chunk.index
-            df_mother.loc[original_indices, 'fecha_asignacion'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            df_mother.loc[original_indices, 'id_chunk'] = chunk_id
-            updated_indices.extend(original_indices)
-
-    if updated_indices:
-        # Guardar el CSV madre actualizado.
-        df_mother.to_csv(mother_csv_path, index=False)
-        logger_instance.success(f"CSV Madre actualizado en {mother_csv_path} con información de asignación para {len(updated_indices)} leads.")
-
-    return generated_chunk_files
-
 
 # --- CSS Personalizado para Colores del Brand Kit ---
 brand_kit_colors = {
@@ -650,9 +449,7 @@ with st.sidebar:
 
     # --- Gestión de Etapas ---
     stage_options = {
-        1: "Etapa 1: Configuración y Scraping",
-        2: "Etapa 2: Revisión de Resultados",
-        3: "Etapa 3: Procesamiento y Gestión de Leads"
+        1: "Etapa 1: Configuración y Scraping"
     }
     st.header("🗺️ Navegación")
     selected_stage_sidebar = st.radio(
@@ -840,6 +637,11 @@ with st.sidebar:
 
 # --- Área de Contenido Principal (Cambia según la etapa) ---
 
+# Comentario para indicar que Etapas 2 y 3 fueron removidas
+# y que el procesamiento posterior es manejado por el ETL Central.
+st.markdown("---")
+st.warning("Nota: Las funcionalidades de consolidación, estadísticas y gestión de leads (Etapas 2 y 3) han sido retiradas de este agente.")
+st.info("Este agente ahora se enfoca únicamente en el scraping y generación de CSVs crudos. Un ETL Central debe encargarse del procesamiento posterior.")
 if st.session_state.stage == 1:
     st.header("⚙️ Configuración y Scraping")
     scraping_state = get_scraping_state()
@@ -960,165 +762,6 @@ if st.session_state.stage == 1:
             st.rerun() # Volver a ejecutar para mostrar el estado final y los resultados.
         else:
             time.sleep(1) # Tasa de refresco para los logs en vivo.
-            st.rerun()
-
-
-elif st.session_state.stage == 2:
-    st.header("📊 Revisar Resultados")
-    st.write("Revisa los datos obtenidos en la última ejecución y su distribución geográfica.")
-    scraping_state = get_scraping_state()
-
-    if scraping_state['scraping_done']:
-        st.subheader("Estadísticas de Scraping")
-        final_df = st.session_state.get('final_df_consolidated', pd.DataFrame())
-        total_rows_scraped = len(final_df)
-
-        if total_rows_scraped > 0:
-            st.info(f"Total de prospectos encontrados en la última ejecución: {total_rows_scraped}")
-            num_with_email = 0
-            if 'emails' in final_df.columns:
-                num_with_email = final_df['emails'].dropna().astype(str).str.strip().astype(bool).sum()
-            st.metric("Prospectos con Email", num_with_email)
-
-            num_with_phone = 0
-            if 'phone' in final_df.columns:
-                num_with_phone = final_df['phone'].dropna().astype(str).str.strip().astype(bool).sum()
-            st.metric("Prospectos con Teléfono", num_with_phone)
-
-            st.subheader("Resultados por Ciudad:")
-            for city, data in st.session_state.get('processed_city_data_results', {}).items():
-                df_city = data.get('df')
-                if df_city is not None:
-                    st.write(f"- **{city.capitalize()}:** {len(df_city)} prospectos")
-                else:
-                    st.write(f"- **{city.capitalize()}:** Error al procesar")
-        else:
-            st.info("No hay datos de la última ejecución de scraping para mostrar estadísticas.")
-
-        st.subheader("Visualización en Mapa")
-        df_for_map = st.session_state.get('final_df_consolidated')
-        map_data_available = False
-        if df_for_map is not None and not df_for_map.empty and 'lat' in df_for_map.columns and 'lon' in df_for_map.columns:
-            df_for_map_cleaned = df_for_map.dropna(subset=['lat', 'lon']).copy()
-            df_for_map_cleaned['lat'] = pd.to_numeric(df_for_map_cleaned['lat'], errors='coerce')
-            df_for_map_cleaned['lon'] = pd.to_numeric(df_for_map_cleaned['lon'], errors='coerce')
-            df_for_map_cleaned.dropna(subset=['lat', 'lon'], inplace=True)
-            if not df_for_map_cleaned.empty:
-                map_data_available = True
-
-        if map_data_available:
-            st.map(df_for_map_cleaned)
-        else:
-            st.info("No hay datos válidos de latitud/longitud para mostrar en el mapa.")
-
-        if not final_df.empty:
-            st.subheader("Datos Completos")
-            st.dataframe(final_df)
-        else:
-            st.info("No hay datos disponibles para mostrar.")
-
-        if total_rows_scraped > 0:
-            if st.button("➡️ Procesar y Consolidar con CSV Madre", key="btn_goto_stage3"):
-                st.session_state.stage = 3
-                st.rerun()
-        else:
-            st.warning("La última ejecución de scraping no encontró ningún prospecto.")
-
-    elif scraping_state['scraping_in_progress']:
-        st.info("Scraping en progreso. Espera a que termine para ver los resultados aquí.")
-    else:
-        st.info("Ejecuta un scraping (Etapa 1) para ver los resultados y estadísticas aquí.")
-
-
-elif st.session_state.stage == 3:
-    st.header("💾 Consolidar y Preparar para Vendedores")
-    st.markdown("""
-    En esta etapa, gestionas los datos de los prospectos extraídos:
-    1.  **Consolidar Datos:** Integra los resultados con el CSV Madre.
-    2.  **Visualizar CSV Madre:** Revisa todos los prospectos consolidados.
-    3.  **Generar Chunks:** Crea archivos CSV para distribuir a los vendedores.
-    """)
-
-    st.subheader(f"Visualizador de CSV Madre ({os.path.basename(CONSOLIDATED_MOTHER_CSV_PATH_APP)})")
-    df_mother_display = pd.DataFrame()
-    if os.path.exists(CONSOLIDATED_MOTHER_CSV_PATH_APP) and os.stat(CONSOLIDATED_MOTHER_CSV_PATH_APP).st_size > 0:
-        try:
-            df_mother_display = pd.read_csv(CONSOLIDATED_MOTHER_CSV_PATH_APP, low_memory=False)
-            st.info(f"CSV Madre cargado: {len(df_mother_display)} filas.")
-            if 'city' in df_mother_display.columns:
-                if st.checkbox("Ordenar por Ciudad"):
-                    df_mother_display = df_mother_display.sort_values(by='city').reset_index(drop=True)
-            st.dataframe(df_mother_display)
-        except Exception as e_load_mother:
-            st.error(f"Error al cargar el CSV Madre: {e_load_mother}")
-    else:
-        st.info("CSV Madre no encontrado o vacío. Extrae datos primero para crear uno.")
-
-    st.subheader("Leads Pendientes de Asignación")
-    if not df_mother_display.empty and 'fecha_asignacion' in df_mother_display.columns:
-        df_unassigned = df_mother_display[df_mother_display['fecha_asignacion'].isna()].copy()
-        if not df_unassigned.empty:
-            st.info(f"Se encontraron {len(df_unassigned)} leads pendientes de asignación.")
-            st.dataframe(df_unassigned)
-        else:
-            st.info("No hay leads pendientes de asignación en el CSV Madre.")
-    elif not df_mother_display.empty:
-        st.warning("La columna 'fecha_asignacion' no se encuentra en el CSV Madre. No se pueden mostrar leads pendientes.")
-    else:
-        st.info("Carga o consolida datos para ver leads pendientes.")
-
-    st.subheader("Consolidar Datos Raspados Recientes")
-    st.markdown("Integra los resultados de la última ejecución con el CSV Madre. Este proceso deduplicará automáticamente los leads.")
-    total_scraped_in_session = len(st.session_state.get('final_df_consolidated', pd.DataFrame()))
-    if total_scraped_in_session > 0:
-        st.info(f"Hay {total_scraped_in_session} prospectos nuevos listos para consolidar.")
-        if not os.path.exists(CONSOLIDATED_MOTHER_CSV_PATH_APP) or os.stat(CONSOLIDATED_MOTHER_CSV_PATH_APP).st_size == 0:
-            st.warning("El CSV Madre no existe o está vacío. Se creará uno nuevo al consolidar.")
-        if st.button("Consolidar con CSV Madre", key="btn_consolidate_mother_csv"):
-            consolidate_success = consolidate_scraped_data(st.session_state.final_df_consolidated, ui_logger)
-            if consolidate_success:
-                st.session_state.final_df_consolidated = pd.DataFrame(columns=gmaps_column_names_list_app)
-                st.success("Consolidación completada. El CSV Madre ha sido actualizado.")
-                st.rerun()
-            else:
-                st.error("Falló la consolidación. Revisa los logs.")
-    else:
-        st.info("No hay nuevos datos de scraping para consolidar. Ejecuta un scraping (Etapa 1).")
-
-    st.subheader("Generar Chunks para Asignación")
-    can_generate_chunks = False
-    if not df_mother_display.empty:
-        if 'fecha_asignacion' in df_mother_display.columns and 'city' in df_mother_display.columns:
-            # Comprueba si hay alguna fila donde 'fecha_asignacion' es nula.
-            if df_mother_display['fecha_asignacion'].isna().any():
-                can_generate_chunks = True
-            else:
-                st.info("No hay leads pendientes de asignación para generar chunks.")
-        else:
-            st.warning("El CSV Madre no tiene las columnas 'fecha_asignacion' o 'city' para poder generar chunks.")
-    else:
-        st.info("Carga o consolida datos primero para poder generar chunks.")
-
-    # Mostrar la sección de chunking solo si hay leads para procesar.
-    if can_generate_chunks:
-        st.write(f"Este botón generará archivos CSV en el directorio `{os.path.basename(CHUNKS_DATA_DIR_APP)}` con 30 leads cada uno para todas las ciudades pendientes. Los leads asignados se marcarán en el CSV Madre.")
-
-        if st.button("Cortar Chunks de 30 Leads para Todos los Pendientes", key="btn_generate_chunks_ui", disabled=not can_generate_chunks):
-            # La función `generate_lead_chunks` procesa todos los leads no asignados de todas las ciudades.
-            generated_files_dict = generate_lead_chunks(
-                output_dir=CHUNKS_DATA_DIR_APP,
-                chunk_size=30,
-                logger_instance=ui_logger
-            )
-
-            if generated_files_dict:
-                st.success("Chunks generados exitosamente:")
-                for city, files in generated_files_dict.items():
-                    st.info(f"**{city.capitalize()}:** {', '.join(files)}")
-            else:
-                st.info("No se generaron nuevos chunks. Posiblemente no había leads sin asignar.")
-
-            # Recargar la página para reflejar los cambios en el CSV Madre.
             st.rerun()
 
 st.sidebar.markdown("---")

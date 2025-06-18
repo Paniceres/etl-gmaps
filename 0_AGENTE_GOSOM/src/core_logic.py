@@ -110,7 +110,7 @@ def run_gmaps_scraper_docker_core(
  default_config_depth_val, results_prefix, logger_instance, log_q_streamlit, fast_mode_enabled
 ): # Added fast_mode_enabled parameter
     logger_instance.subsection(f"Scraping Docker: '{city_name_key.capitalize()}'")
-    if not keywords_list: logger_instance.warning(f"No kw para '{city_name_key}'."); return None
+    if not keywords_list: logger_instance.warning(f"No kw para '{city_name_key}'. Saltando scraping."); return None
     
     city_info = gmaps_coords_dict.get(city_name_key.lower())
     if not city_info or city_info.get('latitude') is None or city_info.get('longitude') is None:
@@ -231,63 +231,6 @@ def run_gmaps_scraper_docker_core(
             try: os.remove(tmp_kw_fp_host)
             except: pass
 
-def validate_csv_integrity_core(csv_filepath, required_columns, logger_instance):
-    """
-    Valida la integridad de un archivo CSV, asegurando que contenga las columnas requeridas.
-
-    Args:
-        csv_filepath (str): Ruta completa al archivo CSV a validar.
-        required_columns (list): Lista de nombres de columnas que deben estar presentes.
-        logger_instance (StyledLogger): Instancia del logger para registrar mensajes.
-
-    Returns:
-        bool: True si el CSV es válido y contiene todas las columnas requeridas, False en caso contrario.
-    """
-    logger_instance.subsection(f"Validando Integridad CSV: '{os.path.basename(csv_filepath)}'")
-    try:
-        df = pd.read_csv(csv_filepath, nrows=0) # Leer solo el encabezado
-        missing_cols = [col for col in required_columns if col not in df.columns]
-        if not missing_cols: logger_instance.success(f"Integridad CSV OK. Columnas requeridas presentes.")
-        else: logger_instance.error(f"Integridad CSV FALLIDA. Faltan columnas: {', '.join(missing_cols)}")
-        return not missing_cols
-    except FileNotFoundError: logger_instance.error(f"Archivo CSV no encontrado: {csv_filepath}"); return False
-    except pd.errors.EmptyDataError: logger_instance.error(f"Archivo CSV vacío: {csv_filepath}"); return False
-    except Exception as e: logger_instance.error(f"Error validando integridad CSV {csv_filepath}: {e}", exc_info=True); return False
-
-def compare_and_filter_new_data_core(df_new, main_csv_filepath, logger_instance):
-    """
-    Compara nuevos datos con el CSV principal para filtrar duplicados.
-    Duplicados se definen por la combinación de 'link' y 'title'.
-
-    Args:
-        df_new (pd.DataFrame): DataFrame con los datos recién scrapeados y transformados.
-        main_csv_filepath (str): Ruta completa al archivo CSV principal (scrape_jobs.csv).
-        logger_instance (StyledLogger): Instancia del logger.
-
-    Returns:
-        pd.DataFrame: DataFrame con los nuevos datos que no son duplicados.
-    """
-    logger_instance.subsection("Comparando datos nuevos con CSV principal para deduplicación")
-    if not os.path.exists(main_csv_filepath) or os.path.getsize(main_csv_filepath) == 0:
-        logger_instance.info(f"CSV principal consolidado no existe o está vacío '{main_csv_filepath}'. Todos los datos nuevos ({len(df_new)} registros) son considerados únicos.")
-        return df_new
-
-    try:
-        df_main = pd.read_csv(main_csv_filepath, encoding='utf-8', low_memory=False)
-        logger_instance.info(f"CSV principal consolidado cargado con {len(df_main)} registros para comparación.")
- 
-        # Realizar un merge para identificar filas en df_new que no están en df_main
-        merged_df = pd.merge(df_new, df_main[['link', 'title']], on=['link', 'title'], how='left', indicator=True)
-        df_unique_new = merged_df[merged_df['_merge'] == 'left_only'].drop('_merge', axis=1)
-
-        logger_instance.success(f"Comparación completa. Se encontraron {len(df_unique_new)} registros nuevos únicos de {len(df_new)}.")
-        return df_unique_new
-
-    except Exception as e:
-        logger_instance.error(f"Error comparando datos nuevos con CSV principal {main_csv_filepath}: {e}", exc_info=True)
-        logger_instance.warning("Ocurrió un error durante la comparación. Retornando DataFrame nuevo sin filtrar por seguridad.")
-        return df_new
-
 def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
     """
     Transforms raw data from Google Maps scraper output into a cleaned DataFrame,
@@ -389,12 +332,12 @@ def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
     # --- FIN MODIFICACIÓN ---
 
 
-    # --- Resto del código de limpieza y procesamiento de columnas ---
-    # Asegurarse de que estas columnas existan antes de intentar limpiarlas y que estén en existing_selected_columns
+    # --- Limpieza básica de columnas ---
+    # This agent only performs basic cleaning, the Central ETL will handle deeper processing.
     cols_to_clean = ['phone', 'emails', 'category', 'website', 'title']
     for col_clean in cols_to_clean:
         if col_clean in df_processed.columns and col_clean in existing_selected_columns: # Doble verificación
-            df_processed[col_clean] = df_processed[col_clean].astype(str).str.strip()
+            df_processed.loc[:, col_clean] = df_processed[col_clean].astype(str).str.strip()
             df_processed.loc[df_processed[col_clean].isin(['nan', 'None', '', '<NA>']), col_clean] = pd.NA
             if col_clean == 'phone':
                 # Aplicar limpieza de teléfono solo si la columna existe después del filtrado
@@ -407,8 +350,8 @@ def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
     # Asegurarse de que las columnas parseadas de la dirección también se limpien si están presentes y seleccionadas
     for parsed_col in address_parse_cols:
         if parsed_col in df_processed.columns and parsed_col in existing_selected_columns:
-             df_processed[parsed_col] = df_processed[parsed_col].astype(str).str.strip()
-             df_processed.loc[df_processed[parsed_col].isin(['nan', 'None', '', '<NA>']), parsed_col] = pd.NA
+            df_processed.loc[:, parsed_col] = df_processed[parsed_col].astype(str).str.strip()
+            df_processed.loc[df_processed[parsed_col].isin(['nan', 'None', '', '<NA>']), parsed_col] = pd.NA
 
 
     logger_instance.success(f"Transformación OK para {city_key_origin}. {len(df_processed)} regs con {len(df_processed.columns)} columnas seleccionadas/existentes.")
@@ -416,6 +359,9 @@ def transform_gmaps_data_core(df_raw, city_key_origin, logger_instance):
 
 def process_city_data_core(
     *, city_key, keywords_list, depth_from_ui, extract_emails_flag, 
+    # Note: Removed consolidation and chunking related parameters
+    # This function now only scrapes and saves raw data.
+    # Consolidation, deduplication, and chunk generation are delegated to the Central ETL.
     config_params_dict, paths_config_dict, logger_instance, log_q_streamlit
     , fast_mode_enabled):
     # ... (Tu función process_city_data_core COMPLETA de la respuesta anterior,
