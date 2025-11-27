@@ -14,23 +14,72 @@ customize it to your needs
 
 ![Example GIF](img/example.gif)
 
+## 📧 Quick Start: Email Marketing con HubSpot
+
+Este scraper es ideal para generar listas de contactos para campañas de email marketing. Aquí está el flujo completo:
+
+### 1. Crear archivo de búsquedas
+
+Tus archivos de búsqueda ahora están organizados en `data/input/`. Puedes crear uno nuevo o usar los existentes:
+
+```bash
+# Ejemplo de archivos disponibles:
+data/input/rubro_abogados.txt
+data/input/rubro_contadores.txt
+data/input/rubro_arquitectos.txt
+```
+
+### 2. Ejecutar el scraper con extracción de emails
+
+```bash
+# Compilar (solo la primera vez)
+go build
+
+# Ejecutar extrayendo TODOS los datos incluyendo emails
+./google-maps-scraper \
+  -input data/input/rubro_abogados.txt \
+  -results data/temp/abogados_raw.csv \
+  -email \
+  -depth 1 \
+  -exit-on-inactivity 5m
+```
+
+**Parámetros importantes:**
+- `-email`: Extrae emails de los sitios web de los negocios
+- `-depth 1`: Obtiene los primeros 20 resultados por búsqueda
+- `-exit-on-inactivity 5m`: Finaliza si no hay actividad por 5 minutos
+
+### 3. Limpiar datos para HubSpot
+
+```bash
+# Limpiar el CSV y prepararlo para importación
+python3 clean_for_hubspot.py data/temp/abogados_raw.csv data/clean/abogados_hubspot.csv
+```
+
+Esto crea un CSV limpio en `data/clean/` con solo las columnas necesarias:
+- `title`: Nombre del negocio
+- `category`: Tipo de negocio
+- `street_address`: Dirección de la calle
+- `city`: Ciudad
+- `state`: Provincia/Estado
+- `website`: Sitio web
+- `phone`: Teléfono
+- `emails`: Emails extraídos
+- `latitude`, `longitude`: Coordenadas GPS
+
+### 4. Importar a HubSpot
+
+1. En HubSpot, ve a **Contacts** → **Import**
+2. Sube el archivo desde `data/clean/abogados_hubspot.csv`
+3. Mapea las columnas del CSV a los campos de HubSpot
+4. ¡Listo para crear tu campaña!
+
+---
+
 ### Web UI:
 
 ```
-mkdir -p gmapsdata && docker run -v $PWD/gmapsdata:/gmapsdata -p 8080:8080 gosom/google-maps-scraper -data-folder /gmapsdata
-```
-
-Or dowload the [binary](https://github.com/gosom/google-maps-scraper/releases) for your platform and run it.
-
-Note: The results will take at least 3 minutes to appear, even if you add only one keyword. This is the minimum configured runtime.
-
-Note: for MacOS the docker command should not work. **HELP REQUIRED**
-
-
-### Command line:
-
-```
-touch results.csv && docker run -v $PWD/example-queries.txt:/example-queries -v $PWD/results.csv:/results.csv gosom/google-maps-scraper -depth 1 -input /example-queries -results /results.csv -exit-on-inactivity 3m
+./google-maps-scraper -depth 1 -input example-queries.txt -results results.csv -exit-on-inactivity 3m
 ```
 
 file `results.csv` will contain the parsed results.
@@ -58,8 +107,7 @@ For detailed API documentation, refer to the OpenAPI 3.0.3 specification availab
 - Exports the data to CSV, JSON or PostgreSQL
 - Performance about 120 urls per minute (-depth 1 -c 8)
 - Extendable to write your own exporter
-- Dockerized for easy run in multiple platforms
-- Scalable in multiple machines
+- Extendable to write your own exporter
 - Optionally extracts emails from the website of the business
 - SOCKS5/HTTP/HTTPS proxy support
 - Serverless execution via AWS Lambda functions (experimental & no documentation yet)
@@ -216,10 +264,14 @@ Matsuhisa Athens #!#MyIDentifier
 
 ## Quickstart
 
-### Using docker:
+### On your host
 
 ```
-touch results.csv && docker run -v $PWD/example-queries.txt:/example-queries -v $PWD/results.csv:/results.csv gosom/google-maps-scraper -depth 1 -input /example-queries -results /results.csv -exit-on-inactivity 3m
+# Build the project
+go build
+
+# Run the scraper
+./google-maps-scraper -input example-queries.txt -results results.csv -exit-on-inactivity 3m
 ```
 
 file `results.csv` will contain the parsed results.
@@ -343,28 +395,14 @@ See an example:
 4. Run the program like `./etl-gmaps -writer ~/myplugins:DummyPrinter -input example-queries.txt`
 
 
-### Plugins and Docker
-
-It is possible to use the docker image and use tha plugins.
-In such case make sure that the shared library is build using a compatible GLIB version with the docker image.
-otherwise you will encounter an error like:
-
-```
-/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by /plugins/example_writer.so)
-```
 
 
-## Using Database Provider (postgreSQL)
 
-For running in your local machine:
+### Using Database Provider (postgreSQL)
 
-```
-docker-compose -f docker-compose.dev.yaml up -d
-```
+Ensure you have a PostgreSQL database running.
 
-The above starts a PostgreSQL container and creates the required tables
-
-to access db:
+To access db:
 
 ```
 psql -h localhost -U postgres -d postgres

@@ -188,7 +188,11 @@ func (j *PlaceJob) extractJSON(page playwright.Page) ([]byte, error) {
 
 	raw, ok := rawI.(string)
 	if !ok {
-		return nil, fmt.Errorf("could not convert to string")
+		return nil, fmt.Errorf("could not convert to string: %v", rawI)
+	}
+
+	if strings.HasPrefix(raw, "DEBUG:") {
+		return nil, fmt.Errorf("JS extraction failed: %s", raw)
 	}
 
 	const prefix = `)]}'`
@@ -219,19 +223,31 @@ func ctxWait(ctx context.Context, dur time.Duration) {
 }
 
 const js = `
-function parse() {
-	const appState = window.APP_INITIALIZATION_STATE[3];
-	if (!appState) {
-		return null;
-	}
-
-	for (let i = 65; i <= 90; i++) {
-		const key = String.fromCharCode(i) + "f";
-		if (appState[key] && appState[key][6]) {
-		return appState[key][6];
+(function() {
+	function parse() {
+		if (!window.APP_INITIALIZATION_STATE) {
+			return "DEBUG: APP_INITIALIZATION_STATE is undefined";
 		}
-	}
+		const appState = window.APP_INITIALIZATION_STATE[3];
+		if (!appState) {
+			return "DEBUG: APP_INITIALIZATION_STATE[3] is undefined. Length: " + window.APP_INITIALIZATION_STATE.length;
+		}
 
-	return null;
-}
+		// New structure: check 'lg' key first
+		if (appState.lg && appState.lg[6]) {
+			return appState.lg[6];
+		}
+
+		// Fallback to old structure: Af-Zf
+		for (let i = 65; i <= 90; i++) {
+			const key = String.fromCharCode(i) + "f";
+			if (appState[key] && appState[key][6]) {
+			return appState[key][6];
+			}
+		}
+
+		return "DEBUG: Key not found in loop. Keys: " + Object.keys(appState).join(",");
+	}
+	return parse();
+})()
 `
